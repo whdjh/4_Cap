@@ -1,3 +1,4 @@
+// 게시판 기능 구현 완료
 document.addEventListener("DOMContentLoaded", () => {
 	const postForm = document.getElementById("postForm");
 	const postTitle = document.getElementById("postTitle");
