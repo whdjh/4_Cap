@@ -1,0 +1,25 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SeeSo Web Sample</title>
+  <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+  <video id="video" width="720" height="560" autoplay muted></video>
+  <canvas id="output" style="position: fixed;"></canvas>
+  <h1 style="text-align: center;z-index: -1"> Calibration Service </h1>
+  <h2 id="gazeInfo" style="text-align: center;"></h2>
+  <div class="container">
+    <button id="calibrationButton" style="margin: 0 auto;"> Click me to use calibration service </button>
+    <script src="detect-gaze.js"></script>
+  </div>
+  <script src="./Face-Detection-JavaScript/script.js"></script>
+</body>
+
+</html>
