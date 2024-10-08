@@ -14,7 +14,7 @@ app.use((req, res, next) => {
     next()
 })
 
-app.use('/models', express.static(path.join(__dirname, 'Face-Detection-JavaScript/models')));
+app.use('/models', express.static(path.join(__dirname, './models')));
 
 const bundler = new Bundler(bundlePath);
 app.use(bundler.middleware());
