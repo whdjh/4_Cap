@@ -1,0 +1,74 @@
+/* Style for the form container */
+#postForm {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for input and textarea */
+#postForm input[type="text"],
+#postForm textarea {
+  width: 100%;
+  padding: 12px;
+  margin-bottom: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+
+/* Specific style for the file input */
+#postFile {
+  margin-bottom: 12px;
+}
+
+/* Style for the submit button */
+#postForm button {
+  width: 100%;
+  padding: 12px;
+  background-color: #007bff;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+#postForm button:hover {
+  background-color: #0056b3;
+}
+
+/* Style for the posts list */
+#postsList {
+  max-width: 600px;
+  margin: 20px auto;
+  list-style-type: none;
+  padding: 0;
+}
+
+#postsList li {
+  background-color: #f1f1f1;
+  margin-bottom: 12px;
+  padding: 15px;
+  border-radius: 6px;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive design for smaller screens */
+@media (max-width: 768px) {
+  #postForm {
+    padding: 15px;
+  }
+
+  #postForm button {
+    font-size: 14px;
+  }
+
+  #postsList li {
+    padding: 10px;
+  }
+}
