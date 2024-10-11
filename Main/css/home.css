@@ -1,13 +1,14 @@
 /* main */
 .banner {
 	text-align: left;
-   	height: 540px;
-   	display: flex;
-   	align-items: center;
+  height: 540px;
+  display: flex;
+  align-items: center;
 	background-color: #cfe5ff;
 	background-repeat: no-repeat;
-    background-position: 80% bottom;
-   	background-size: 55%;
+  background-position: 80% bottom;
+  background-size: 55%;
+	border: 2px solid white;
 }
 
 #heatmap {
@@ -57,3 +58,6 @@
   	padding: 14.5px 33.5px;
 }
 
+#btn_section {
+	height: 540px;
+}
