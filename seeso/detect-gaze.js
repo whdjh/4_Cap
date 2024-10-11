@@ -8,10 +8,17 @@ const licenseKey = '';
 
 function findEmotion(gazeTimestamp) {
     if (emotions.length === 0) {
-        return { emotion: null, timestamp: gazeTimestamp }; // 빈 배열일 때 기본값 반환
+        return { emotion: {}, timestamp: gazeTimestamp }; // 빈 배열일 때 기본값 반환
     }
 
-    return emotions.reduce((closest, emotion) => {
+    // gazeTimestamp보다 이전의 감정만 필터링
+    const previousEmotions = emotions.filter(emotion => emotion.timestamp <= gazeTimestamp);
+
+    if (previousEmotions.length === 0) {
+        return { emotion: {}, timestamp: gazeTimestamp }; // 이전 감정이 없을 경우
+    }
+
+    return previousEmotions.reduce((closest, emotion) => {
         const closestDiff = Math.abs(closest.timestamp - gazeTimestamp);
         const emotionDiff = Math.abs(emotion.timestamp - gazeTimestamp);
         return emotionDiff < closestDiff ? emotion : closest;
@@ -38,17 +45,15 @@ function parseCalibrationDataInQueryString () {
 // gaze callback.
 function onGaze(gazeInfo) {
     // do something with gaze info.
-    const gazeTimestamp = Date.now();
 
     // 시선 정보
-    gazes.push({ x: gazeInfo.x, y: gazeInfo.y, timestamp: gazeTimestamp });
+    gazes.push({ x: gazeInfo.x, y: gazeInfo.y, timestamp: gazeInfo.timestamp });
 
-    const closestEmotion = findEmotion(gazeTimestamp);
+    const closestEmotion = findEmotion(gazeInfo.timestamp);
+    console.log('Closest Emotion:', closestEmotion);
 
-    // 감정 데이터가 없을 경우 처리
-    if (closestEmotion.emotion === null) {
-        console.log('No emotion data available.');
-    } else {
+    // closestEmotion.emotion이 객체인지 확인합니다.
+    if (closestEmotion.emotion && typeof closestEmotion.emotion === 'object' && Object.keys(closestEmotion.emotion).length > 0) {
         const highestEmotion = Object.keys(closestEmotion.emotion).reduce((a, b) => {
             return closestEmotion.emotion[a] > closestEmotion.emotion[b] ? a : b;
         });
@@ -57,10 +62,12 @@ function onGaze(gazeInfo) {
             gazeX: gazeInfo.x,
             gazeY: gazeInfo.y,
             emotion: highestEmotion,
-            timestamp: new Date(gazeTimestamp).toLocaleString()
+            timestamp: gazeInfo.timestamp
         };
-    
-         console.log('Combined Gaze and Emotion Data:', combinedData);
+
+        console.log('Combined Gaze and Emotion Data:', combinedData);
+    } else {
+        console.log('No valid emotion data available.'); // 감정 데이터가 없을 때
     }
     showGaze(gazeInfo)
 }
