@@ -25,6 +25,24 @@ function findEmotion(gazeTimestamp) {
     });
 }
 
+function addNewData(gaze, emo, time) {
+    // 1. 기존 데이터 가져오기
+    let storedData = JSON.parse(localStorage.getItem('userData')) || [];  // 저장된 데이터가 없으면 빈 배열 초기화
+
+    // 2. 새로운 데이터 생성
+    let newData = {
+        timeData: time,
+        gazeData: gaze,  // {x: 150, y: 300} 등의 좌표 데이터
+        emotion: emo            // ['happy', 'neutral'] 등 감정 데이터
+    };
+
+    // 3. 새로운 데이터를 기존 데이터에 추가
+    storedData.push(newData);
+
+    // 4. 추가된 데이터를 다시 로컬 스토리지에 저장
+    localStorage.setItem('userData', JSON.stringify(storedData));
+}
+
 function onClickCalibrationBtn(){
     const userId = 'YOUR_USER_ID'; // ex) 5e9easf293
     const redirectUrl = 'http://localhost:8082';
@@ -50,24 +68,38 @@ function onGaze(gazeInfo) {
     gazes.push({ x: gazeInfo.x, y: gazeInfo.y, timestamp: gazeInfo.timestamp });
 
     const closestEmotion = findEmotion(gazeInfo.timestamp);
-    console.log('Closest Emotion:', closestEmotion);
+    // console.log('Closest Emotion:', closestEmotion);
 
-    // closestEmotion.emotion이 객체인지 확인합니다.
-    if (closestEmotion.emotion && typeof closestEmotion.emotion === 'object' && Object.keys(closestEmotion.emotion).length > 0) {
-        const highestEmotion = Object.keys(closestEmotion.emotion).reduce((a, b) => {
-            return closestEmotion.emotion[a] > closestEmotion.emotion[b] ? a : b;
-        });
+    let highestEmotion;
 
-        const combinedData = {
-            gazeX: gazeInfo.x,
-            gazeY: gazeInfo.y,
-            emotion: highestEmotion,
-            timestamp: gazeInfo.timestamp
-        };
+    // closestEmotion이 정의되어 있는지 확인
+    if (closestEmotion && typeof closestEmotion.expressions === 'object' && closestEmotion.expressions !== null) {
+        
+        const emotionKeys = Object.keys(closestEmotion.expressions);
+        
+        if(emotionKeys.length > 0) {
+            highestEmotion = Object.keys(closestEmotion.expressions).reduce((a, b) => {
+                return closestEmotion.expressions[a] > closestEmotion.expressions[b] ? a : b;
+            });
 
-        console.log('Combined Gaze and Emotion Data:', combinedData);
-    } else {
-        console.log('No valid emotion data available.'); // 감정 데이터가 없을 때
+            const combinedData = {
+                gazeX: gazeInfo.x,
+                gazeY: gazeInfo.y,
+                emotion: highestEmotion,
+                gazeTime: gazeInfo.timestamp,
+                emoTime: closestEmotion.timestamp,
+                diff: (gazeInfo.timestamp - closestEmotion.timestamp) / 1000
+            };
+    
+            // addNewData({x: gazeInfo.x, y: gazeInfo.y}, highestEmotion, gazeInfo.timestamp)
+            console.log('Combined Gaze and Emotion Data:', combinedData);
+        } else {
+            highestEmotion = 'unknown'; // 감정 데이터가 비어 있는 경우
+            console.log('No emotion data')
+        }
+    } else { // 감정 데이터가 없을 경우 기본값을 설정
+        highestEmotion = 'unknown';
+        console.log('No emotion and closestEmotion data')  // closestEmotion 또는 emotion이 유효하지 않은 경우
     }
     showGaze(gazeInfo)
 }
