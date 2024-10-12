@@ -12,12 +12,14 @@
       crossorigin
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
     />
-	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/common.css" />
+	<link rel="stylesheet" href="css/home.css" />
+	<link rel="stylesheet" href="css/crud.css" />
 </head>
 <body>
 	<header>
 		<a href="index.html">
-			<img src="img/logo/logo.svg" alt="로고" width=200 />
+			<img src="img/logo/logo.svg" alt="로고" width=100 />
 		</a>
 		<nav>
 			<ul>
@@ -27,8 +29,7 @@
 		</nav>
 	</header>
 	
-	<main>
-		<!--오류생성 postForm이 안보임-->
+	<main class="banner">
 		<form id="postForm">
 			<input type="text" id="postTitle" placeholder="Title" required>
 			<textarea id="postContent" placeholder="Content" required></textarea>
@@ -36,7 +37,8 @@
 			<button type="submit">게시글추가</button>
 		</form>
 	
-		<ul id="postsList"></ul>
+		<ul id="postsList">
+		</ul>
 	</main>
 
 	<footer>
@@ -46,6 +48,6 @@
 			<a href="https://github.com/petite-coder" target="_blank" rel="noopener noreferrer"><img src="img/social/github-logo.svg" width=42 alt="이예은"/></a>
 		</div>
 	</footer>
-	<script src="/src/crud.js"></script>
+	<script src="src/crud.js"></script>
 </body>
 </html>
