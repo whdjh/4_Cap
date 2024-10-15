@@ -1,7 +1,7 @@
 import 'regenerator-runtime/runtime';
 import EasySeeSo from 'seeso/easy-seeso';
 
-const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l';
+const licenseKey = '';
 
 let setCal = null;
 
