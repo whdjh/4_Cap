@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TrackEmo(히트맵)</title>
+	<link rel="icon" href="img/logo/favicon.ico">
+	<!--웹폰트-->
+	<link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="css/heatmap.css">
+</head>
+<body>
+	<header>
+		<a href="index.html" id="toindex">
+			<img src="img/logo/logo.svg" alt="로고" width=100 />
+		</a>
+		<nav>
+			<ul>
+			  <li><a href="intro.html">소개</a></li>
+			  <li><a href="crud.html">게시판</a></li>
+			</ul>
+		</nav>
+	</header>
+	
+	<main>
+		<section class="banner">
+			<!--btn들을 이걸로 다 js로 이어야됨-->
+			<div class="btn-container">
+				<button id="showAll" class="all-btn">전체</button>
+				<button id="neg_btn" class="neg-btn">부정</button>
+				<button id="pos_btn" class="pos-btn">긍정</button>
+				<button id="neu_btn" class="neu-btn">중립</button>
+			</div>
+			<div class="heatmap-container" id="heatmapContainer" style="width: 100vw; height: 100vh;"></div>
+		</section>
+	</main>
+
+	<footer>
+		<div id="github_profile">
+			<a href="https://github.com/whdjh" target="_blank" rel="noopener noreferrer"><img src="img/social/github-logo.svg" width=42 alt="이주훈"/></a>
+			<a href="https://github.com/kimhotac" target="_blank" rel="noopener noreferrer"><img src="img/social/github-logo.svg" width=42 alt="김호탁"/></a>
+			<a href="https://github.com/petite-coder" target="_blank" rel="noopener noreferrer"><img src="img/social/github-logo.svg" width=42 alt="이예은"/></a>
+		</div>
+	</footer>
+
+	<script src="draw-heatmap.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!doctype html>
+<html class="no-js" lang="">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>SeeSo Web Sample</title>
+  <script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.min.js" integrity="sha512-FpvmtV53P/z7yzv1TAIVH7PNz94EKXs5aV6ts/Zi+B/VeGU5Xwo6KIbwpTgKc0d4urD/BtkK50IC9785y68/AA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <link rel="stylesheet" href="./css/main.css">
+</head>
+
+<body>
+  <video id="video" width="720" height="560" autoplay muted></video>
+  <canvas id="output" style="position: fixed;"></canvas>
+  <h1 style="text-align: center;z-index: -1"> Calibration Service </h1>
+  <h2 id="gazeInfo" style="text-align: center;"></h2>
+  <div class="container">
+    <button id="calibrationButton" style="margin: 0 auto;"> Click me to use calibration service </button>
+  </div>
+
+  <div id="heatmap-container" style="width: 100vw; height: 100vh;"></div>
+
+  <div class="buttons">
+    <button id="stopTracking">트래킹 중지</button>
+  </div>
+
+  <div class="buttons hidden" id="heatmapButtons">
+    <button id="showAll">전체 감정 히트맵</button>
+    <button id="showPositive">긍정 감정 히트맵</button>
+    <button id="showNeutral">중립 감정 히트맵</button>
+    <button id="showNegative">부정 감정 히트맵</button>
+  </div>  
+
+  <script src="detect-gaze.js"></script>
+  <script src="./script.js"></script>
+</body>
+
+</html>
