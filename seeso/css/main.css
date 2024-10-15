@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 canvas {
   pointer-events:none;
@@ -20,35 +21,37 @@ html, body {
   justify-content: center;
   align-items: center;
 }
-
-.buttons {
-  position: fixed;
-  bottom: 20px;
-  left: 20px;
-}
-
 button {
-  margin: 5px;
-  padding: 10px;
+  /*background-color: lightblue;*/
+  color: black;
   font-size: 25px;
-  cursor: pointer;
+}
+=======
+
+canvas {
+  pointer-events:none;
+  position: fixed;
+  z-index:-1
 }
 
-/* 버튼 숨김 처리 */
-.hidden {
-  display: none;
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
 }
 
-/* 감정에 따른 색상 */
-.heat-point.positive {
-  background-color: rgba(0, 255, 0, 0.5); /* 녹색 (긍정) */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
-.heat-point.neutral {
-  background-color: rgba(255, 255, 0, 0.5); /* 노란색 (중립) */
+button {
+  /*background-color: lightblue;*/
+  color: black;
+  font-size: 25px;
 }
-
-.heat-point.negative {
-  background-color: rgba(255, 0, 0, 0.5); /* 빨간색 (부정) */
-}
-
+>>>>>>> upstream/master
