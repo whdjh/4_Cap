@@ -1,0 +1,36 @@
+.btn-container {
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+	margin-top: 20px;
+}
+.banner button {
+	padding: 12px 24px;
+	font-size: 16px;
+	border: none;
+	border-radius: 25px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	width: 120px;
+	text-align: center;
+}
+#all_btn {
+	background-color: #922ea4;
+	color: white;
+}
+#neg_btn {
+	background-color: #ff6b6b;
+	color: white;
+}
+#pos_btn {
+	background-color: #4ecdc4;
+	color: white;
+}
+#neu_btn {
+	background-color: #f7fff7;
+	color: #333;
+}
+.banner button:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}

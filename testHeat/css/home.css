@@ -1,0 +1,63 @@
+/* main */
+.banner {
+	text-align: left;
+  height: 540px;
+  display: flex;
+  align-items: center;
+	background-color: #cfe5ff;
+	background-repeat: no-repeat;
+  background-position: 80% bottom;
+  background-size: 55%;
+	border: 2px solid white;
+}
+/*
+#heatmap {
+	background-image: url("../img/home/heatmap-image.png");
+}
+
+#img_case {
+	background-image: url("../img/home/imgcase-image.png");
+}
+
+#text_case {
+	background-image: url("../img/home/textcase-image.png");
+}
+*/
+.banner h1 {
+	padding: 0 0 32 0;
+}
+
+.wrapper {
+	width: 100%;
+  	padding: 0 16px;
+}
+
+/* btn */
+.btn {
+	background-color: #3692ff;
+	color: #ffffff;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	margin-left: 40;
+}
+
+/* 버튼 클릭시 색상 변경 시각화 */
+.btn:hover {
+	background-color: #1967d6;
+}
+  
+.btn:focus {
+	background-color: #1251aa;
+}
+
+.watch-btn {
+	font-size: 16px;
+  	font-weight: 600;
+  	border-radius: 999px;
+  	padding: 14.5px 33.5px;
+}
+
+#btn_section {
+	height: 540px;
+}

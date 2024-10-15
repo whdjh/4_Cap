@@ -1,0 +1,81 @@
+/* reset */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+  
+button,
+input,
+textarea,
+select {
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+	color: inherit;
+	-webkit-appearance: none;
+	-moz-appearance: none;
+	appearance: none;
+}
+
+button {
+	background: none;
+	border: none;
+	outline: none;
+	box-shadow: none;
+	cursor: pointer;
+}
+
+/* 텍스트 라인 가장 아래쪽으로 맞춤 */
+img {
+	vertical-align: bottom;
+}
+
+body {
+	color: #374151;
+	font-family: "Pretendard", sans-serif;
+}
+
+/* header */
+header {
+	position: fixed;
+	width: 100%;
+	display: flex;			/* 세로 중앙 정렬 */
+	justify-content: space-between;
+	align-items: center;	/* 세로 중앙 정렬 */
+	padding: 0 16px;
+	background-color: #ffffff;
+	border-bottom: 1px solid #dfdfdf;
+}
+
+nav ul {
+	display: flex;
+	list-style: none;
+}
+
+nav ul li {
+	margin-left: 20px; 
+}
+
+/* footer */
+footer {
+	background-color: white;
+	color: #9ca3af;
+	font-size: 16px;
+	padding: 32px;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 60px;
+}
+
+#github-profile {
+	display: flex;
+	gap: 12px;
+}
