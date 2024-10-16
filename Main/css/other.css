@@ -19,13 +19,14 @@ main {
 	flex-direction: column;
 }
 
-.btn-container {
-	padding: 20px;
-}
-
 .heatmap-container {
 	flex: 1;
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+.main-content {
+	display: flex;
+	width: 100%;
 }

@@ -28,15 +28,46 @@
 
 #neu_btn {
 	background-color: green;
-	color:white;
+	color: white;
 }
 
 #exit_btn {
-	background-color:black;
+	background-color: black;
 	color: white;
 }
 
 .banner button:hover {
+	transform: translateY(-3px);
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.banner.other-banner {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	padding: 20px;
+}
+
+.load-btn-container {
+	display: flex;
+	justify-content: center;
+	gap: 20px;
+	margin-bottom: 20px;
+	width: 100%;
+}
+
+.load-btn {
+	padding: 12px 24px;
+	font-size: 16px;
+	border: none;
+	border-radius: 25px;
+	cursor: pointer;
+	transition: all 0.3s ease;
+	background-color: #3692ff;
+	color: white;
+}
+
+.load-btn:hover {
 	transform: translateY(-3px);
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
