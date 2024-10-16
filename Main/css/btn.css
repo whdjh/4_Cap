@@ -4,6 +4,7 @@
 	gap: 15px;
 	margin-top: 20px;
 }
+
 .banner button {
 	padding: 12px 24px;
 	font-size: 16px;
@@ -14,18 +15,27 @@
 	width: 120px;
 	text-align: center;
 }
+
 #neg_btn {
 	background-color: #ff6b6b;
 	color: white;
 }
+
 #pos_btn {
-	background-color: #4ecdc4;
+	background-color: gold;
 	color: white;
 }
+
 #neu_btn {
-	background-color: #f7fff7;
-	color: #333;
+	background-color: green;
+	color:white;
 }
+
+#exit_btn {
+	background-color:black;
+	color: white;
+}
+
 .banner button:hover {
 	transform: translateY(-3px);
 	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
