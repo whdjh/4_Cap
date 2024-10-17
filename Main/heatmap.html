@@ -14,7 +14,8 @@
     />
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/home.css">
-	<link rel="stylesheet" href="css/heatmap.css">
+	<link rel="stylesheet" href="css/btn.css">
+	<link rel="stylesheet" href="css/other.css">
 </head>
 <body>
 	<header>
@@ -23,32 +24,28 @@
 		</a>
 		<nav>
 			<ul>
-			  <li><a href="intro.html">소개</a></li>
 			  <li><a href="crud.html">게시판</a></li>
 			</ul>
 		</nav>
 	</header>
 	
 	<main>
-		<section class="banner">
-			<!--btn들을 이걸로 다 js로 이어야됨-->
-			<div class="btn-container">
-				<button id="neg_btn" class="neg-btn">부정</button>
-				<button id="pos_btn" class="pos-btn">긍정</button>
-				<button id="neu_btn" class="neu-btn">중립</button>
+		<section class="banner other-banner">
+			<div class="main-content">
+				<div class="btn-container">
+					<button id="exit_btn" class="exit-btn">종료</button>
+					<button id="neg_btn" class="neg-btn">부정</button>
+					<button id="pos_btn" class="pos-btn">긍정</button>
+					<button id="neu_btn" class="neu-btn">중립</button>
+				</div>
 			</div>
+			
 			<div class="heatmap-container">
 				<!--여기에 히트맵이 보이게 css 짜달라고 하셈-->
 			</div>
 		</section>
 	</main>
 
-	<footer>
-		<div id="github_profile">
-			<a href="https://github.com/whdjh" target="_blank" rel="noopener noreferrer"><img src="img/social/github-logo.svg" width=42 alt="이주훈"/></a>
-			<a href="https://github.com/kimhotac" target="_blank" rel="noopener noreferrer"><img src="img/social/github-logo.svg" width=42 alt="김호탁"/></a>
-			<a href="https://github.com/petite-coder" target="_blank" rel="noopener noreferrer"><img src="img/social/github-logo.svg" width=42 alt="이예은"/></a>
-		</div>
-	</footer>
+	
 </body>
 </html>
