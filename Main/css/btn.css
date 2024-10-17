@@ -1,73 +1,70 @@
 .btn-container {
-	display: flex;
-	flex-direction: column;
-	gap: 15px;
-	margin-top: 20px;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  z-index: 10; 
 }
 
 .banner button {
-	padding: 12px 24px;
-	font-size: 16px;
-	border: none;
-	border-radius: 25px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	width: 120px;
-	text-align: center;
+  padding: 12px 24px;
+    font-size: 16px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 120px;
+    text-align: center;
+    opacity: 0.8; 
 }
 
 #neg_btn {
-	background-color: #ff6b6b;
-	color: white;
+  background-color: #ff6b6b;
+  color: white;
 }
 
 #pos_btn {
-	background-color: gold;
-	color: white;
+  background-color: gold;
+  color: white;
 }
 
 #neu_btn {
-	background-color: green;
-	color: white;
+  background-color: green;
+  color: white;
 }
 
 #exit_btn {
-	background-color: black;
-	color: white;
+  background-color: black;
+  color: white;
 }
 
 .banner button:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	opacity: 1;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .banner.other-banner {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	padding: 20px;
-}
-
-.load-btn-container {
-	display: flex;
-	justify-content: center;
-	gap: 20px;
-	margin-bottom: 20px;
-	width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
 }
 
 .load-btn {
-	padding: 12px 24px;
-	font-size: 16px;
-	border: none;
-	border-radius: 25px;
-	cursor: pointer;
-	transition: all 0.3s ease;
-	background-color: silver;
-	color: white;
+  padding: 12px 24px;
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  background-color: silver;
+  color: white;
 }
 
 .load-btn:hover {
-	transform: translateY(-3px);
-	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
