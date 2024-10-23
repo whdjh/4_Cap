@@ -1,14 +1,9 @@
 import 'regenerator-runtime/runtime';
 import h337 from 'heatmap.js';
-import * as address from './address'
-import GazEmo from './gazeEmoClass';
+import { gazEmo } from './imgcase';
 
 let filteredData = [];
 let trackData = [];
-
-const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l';
-const redirectUrl = 'http://localhost:8082';
-const gazEmo = new GazEmo(licenseKey, redirectUrl);
 
 let heatmapInstance = h337.create({
     container: document.getElementById('heatmapContainer'),  // 히트맵이 표시될 DOM 요소
@@ -24,44 +19,57 @@ let heatmapInstance = h337.create({
 });
 
 function getEmotionCategory(emotion) {
-    const positive = ['happy'];
-    const neutral = ['neutral', 'surprised'];
-    const negative = ['sad', 'angry', 'fearful', 'disgusted'];
+    const positiveEmotions = ['happy'];
+    const neutralEmotions = ['neutral', 'surprised'];
+    const negativeEmotions = ['sad', 'angry', 'fearful', 'disgusted'];
 
-    if (positive.includes(emotion)) return 'positive';
-    if (neutral.includes(emotion)) return 'neutral';
+    // 긍정, 중립, 부정 감정 확률 합산
+    const positiveProb = positiveEmotions.reduce((sum, emo) => sum + (emotion[emo] || 0), 0);
+    const neutralProb = neutralEmotions.reduce((sum, emo) => sum + (emotion[emo] || 0), 0);
+    const negativeProb = negativeEmotions.reduce((sum, emo) => sum + (emotion[emo] || 0), 0);
+
+    // 가장 높은 확률을 가진 카테고리 반환
+    const maxProb = Math.max(positiveProb, neutralProb, negativeProb);
+
+    if (maxProb === positiveProb) return 'positive';
+    if (maxProb === neutralProb) return 'neutral';
     return 'negative';
 }
 
-function getEmo() {
+export function getEmo() {
+
     const bufDatas = gazEmo.getGazEmoData();
 
     bufDatas.forEach(bufData => {
         const emotionKeys = Object.keys(bufData.emotion);
-        let highestEmotion = '';
 
         if (emotionKeys.length > 0) {
-            highestEmotion = emotionKeys.reduce((a, b) => {
-                return bufData.emotion[a] > bufData.emotion[b] ? a : b;
-            });
 
             // 높은 확률 감정의 카테고리화
-            const emotionCategory = getEmotionCategory(highestEmotion);
+            const emotionCategory = getEmotionCategory(bufData.emotion);
 
             trackData.push({ x: bufData.x, y: bufData.y, emoType: emotionCategory })
 
         } else {
             trackData.push({
-                highestEmotion: null,
-                category: null
+                x: bufData.x,
+                y: bufData.y,
+                emoType: null
             });
         }
     });
+    return trackData;
 }
 
-async function generateHeatmap(emotionType) {
+export async function generateHeatmap(emotionType, data) {
+    const heatmapContainer = document.getElementById('heatmapContainer');
+    if (!heatmapContainer) {
+        console.error('히트맵 컨테이너가 존재하지 않습니다.');
+        return;
+    }
 
-    const track = trackData;
+    const track = data;
+    console.log('trackData', track);
 
     if (track) {
         // 감정 유형에 따라 데이터를 필터링
@@ -110,43 +118,3 @@ async function generateHeatmap(emotionType) {
         console.log('No track data available for heatmap');
     }
 }
-
-async function main() {
-    getEmo();
-
-    const heatmapContainer = document.getElementById('heatmapContainer');
-    if (!heatmapContainer) {
-        console.error('히트맵 컨테이너가 존재하지 않습니다.');
-        return;
-    }
-
-    // 히트맵 필터링 버튼들 클릭 이벤트
-    document.getElementById('showAll_btn').addEventListener('click', () => {
-        generateHeatmap('full'); // 전체 감정 히트맵
-    });
-
-    document.getElementById('pos_btn').addEventListener('click', () => {
-        generateHeatmap('positive'); // 긍정 감정만 보여주기
-    });
-
-    document.getElementById('neu_btn').addEventListener('click', () => {
-        generateHeatmap('neutral'); // 중립 감정만 보여주기
-    });
-
-    document.getElementById('neg_btn').addEventListener('click', () => {
-        generateHeatmap('negative'); // 부정 감정만 보여주기
-    });
-
-    const indexBtn = document.getElementById('toindex');
-    indexBtn.addEventListener('click', address.handleLinkClick());
-}
-
-document.addEventListener('DOMContentLoaded', async () => {
-    const videoElement = await document.getElementById('video');
-    await gazEmo.initialize(videoElement);
-    await gazEmo.startGazEmo();
-    document.getElementById('exit_btn').addEventListener('click', () => {
-        gazEmo.stopGazEmo();
-        main();
-    });
-});

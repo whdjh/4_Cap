@@ -1,5 +1,6 @@
 import 'regenerator-runtime/runtime';
 import * as address from './address' 
+import GazEmo from './gazeEmoClass';
 
 let setCal = null;
 

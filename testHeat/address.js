@@ -1,5 +1,6 @@
 import 'regenerator-runtime/runtime';
 import EasySeeSo from 'seeso/easy-seeso';
+import GazEmo from './gazeEmoClass';
 
 let setCal = null;
 const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l';
