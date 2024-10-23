@@ -28,10 +28,11 @@ export function parseCalibrationDataInQueryString () {
 }
 
 export function handleLinkClick(event) {
-    // event.preventDefault(); // 기본 링크 이동을 막음
+    event.preventDefault(); // 기본 링크 이동을 막음
+
     const targetUrl = event.target.href;
     console.log('targetUrl:', targetUrl);
-    
+
     const cal = parseCalibrationDataInQueryString();
 
     if (cal) {
@@ -48,7 +49,7 @@ export function handleLinkClick(event) {
 }
 
 export async function checkCali(event) {
-    //event.preventDefault(); // 기본 링크 이동을 막음
+    event.preventDefault(); // 기본 링크 이동을 막음
     const targetUrl = event.target.href;
     console.log('targetUrl:', targetUrl);
 

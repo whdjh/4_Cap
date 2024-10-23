@@ -18,8 +18,8 @@ async function main() {
         }
 
         const imgCaseButton = document.getElementById('toimg'); // 이미지 버튼
-        const textCaseButton = document.getElementById('totext') // 텍스트 버튼
-        const idxCaseButton = document.getElementById('toindex')
+        const textCaseButton = document.getElementById('totext'); // 텍스트 버튼
+        const idxCaseButton = document.getElementById('toindex'); // 로고
 
         if(idxCaseButton) {
             idxCaseButton.addEventListener('click', address.handleLinkClick);
