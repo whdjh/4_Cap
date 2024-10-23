@@ -1,5 +1,6 @@
 import 'regenerator-runtime/runtime';
 import EasySeeSo from 'seeso/easy-seeso';
+import GazEmo from './gazeEmoClass';
 
 let setCal = null;
 const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l';
@@ -28,10 +29,11 @@ export function parseCalibrationDataInQueryString () {
 }
 
 export function handleLinkClick(event) {
-    // event.preventDefault(); // 기본 링크 이동을 막음
+    event.preventDefault(); // 기본 링크 이동을 막음
+
     const targetUrl = event.target.href;
     console.log('targetUrl:', targetUrl);
-    
+
     const cal = parseCalibrationDataInQueryString();
 
     if (cal) {
@@ -48,7 +50,7 @@ export function handleLinkClick(event) {
 }
 
 export async function checkCali(event) {
-    //event.preventDefault(); // 기본 링크 이동을 막음
+    event.preventDefault(); // 기본 링크 이동을 막음
     const targetUrl = event.target.href;
     console.log('targetUrl:', targetUrl);
 
