@@ -1,8 +1,5 @@
 import 'regenerator-runtime/runtime';
 import EasySeeSo from 'seeso/easy-seeso';
-import { showGaze } from './showGaze';
-import * as address from './address'
-
 export default class GazEmo {
     // 생성자: GazEmo 클래스의 인스턴스를 생성하고 필요한 변수들을 초기화합니다.
     constructor(licenseKey, redirectUrl) {
@@ -64,7 +61,10 @@ export default class GazEmo {
         const queryString = decodedURI.split('?')[1];
         if (!queryString || !queryString.includes('calibrationData=')) return undefined;
         const jsonString = queryString.slice('calibrationData='.length, queryString.length);
-        return jsonString;
+        
+        const decodedJsonString = decodeURIComponent(jsonString);
+        console.log('Decoded JSON String:', decodedJsonString);
+        return decodedJsonString;
     }
 
     // 시선 추적을 시작하는 함수입니다.
@@ -102,9 +102,17 @@ export default class GazEmo {
 
     // 웹캠 비디오 스트림을 가져와 비디오 엘리먼트에 연결하는 함수입니다.
     async startVideo() {
+        console.log('스트림 연결')
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
-            this.video.srcObject = stream; // 비디오 엘리먼트에 스트림을 연결합니다.
+            this.video.srcObject = await stream; // 비디오 엘리먼트에 스트림을 연결합니다.
+        
+            await new Promise((resolve) => {
+                this.video.onloadeddata = () => {
+                    console.log('비디오 로드 완료');
+                    resolve(); // 비디오가 완전히 로드되었을 때 실행
+                };
+            });
         } catch (err) {
             console.error('카메라 접근 오류: ', err); // 카메라 접근 실패 시 오류 출력
             alert('감정 인식을 위해 카메라 접근이 필요합니다.'); // 사용자에게 카메라 접근이 필요함을 알립니다.
@@ -136,8 +144,8 @@ export default class GazEmo {
         }, 100);
     }
 
-    loadModels(){
-        Promise.all([
+    async loadModels(){
+        await Promise.all([
             faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
             faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
             faceapi.nets.faceRecognitionNet.loadFromUri('./models'),
@@ -186,33 +194,3 @@ export default class GazEmo {
         }
     }
 }
-
-
-// document.addEventListener('DOMContentLoaded', async () => {
-//     // Video element to be used for gaze and emotion detection
-//     const videoElement = document.getElementById('video');
-
-//     // GazEmo initialization
-//     const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l'; // Replace with your SeeSo license key
-//     const redirectUrl = 'http://localhost:8082'; // Redirect URL after calibration
-
-//     const gazEmo = new GazEmo(licenseKey, redirectUrl);
-//     await gazEmo.initialize(videoElement); // Initialize with the video element
-
-//     gazEmo.startGazEmo();
-//     gazEmo.GazEmoBuf();
-
-//     const exitBtn = document.getElementById('exit_btn');
-//     exitBtn.addEventListener('click', gazEmo.stopGazEmo);
-
-//     const indexBtn = document.getElementById('toindex');
-//     indexBtn.addEventListener('click', address.handleLinkClick);
-
-//     // // Start Calibration
-//     // document.getElementById('startCalibration').addEventListener('click', () => {
-//     //     gazEmo.startCalibration();
-//     // });
-
-//     setTimeout(() => gazEmo.startGazEmo(), 5000);
-//     setTimeout(() => gazEmo.stopGazEmo(), 10000);
-// });
