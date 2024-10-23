@@ -6,8 +6,9 @@ const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l';
 
 export function onClickCalibrationBtn(page){
     const userId = 'YOUR_USER_ID'; // ex) 5e9easf293
-    const baseUrl = 'http://localhost:8082';
-    const redirectUrl = `${baseUrl}/${page}`;
+    // const baseUrl = 'http://localhost:8082';
+    // const redirectUrl = `${baseUrl}/${page}`;
+    const redirectUrl = `${page}`;
     const calibrationPoint = 5;
     EasySeeSo.openCalibrationPage(licenseKey, userId, redirectUrl, calibrationPoint);
 }
@@ -27,7 +28,7 @@ export function parseCalibrationDataInQueryString () {
 }
 
 export function handleLinkClick(event) {
-    event.preventDefault(); // 기본 링크 이동을 막음
+    // event.preventDefault(); // 기본 링크 이동을 막음
     const targetUrl = event.target.href;
     console.log('targetUrl:', targetUrl);
     
@@ -47,7 +48,7 @@ export function handleLinkClick(event) {
 }
 
 export async function checkCali(event) {
-    event.preventDefault(); // 기본 링크 이동을 막음
+    //event.preventDefault(); // 기본 링크 이동을 막음
     const targetUrl = event.target.href;
     console.log('targetUrl:', targetUrl);
 
@@ -72,7 +73,7 @@ export async function checkCali(event) {
 }
 
 export function movePage_cali(targetUrl){
-    console.log('movePage_cali setCal2', setCal)
+    console.log('movePage_cali targetUrl', targetUrl)
     const calibrationQuery = `?calibrationData=${encodeURIComponent(JSON.stringify(setCal))}`;	
     const newUrl = `${targetUrl}${calibrationQuery}`;
     console.log('newUrl:',newUrl);
