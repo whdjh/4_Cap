@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>TrackEmo(이미지)</title>
+	<link rel="icon" href="img/logo/favicon.ico">
+	<!--웹폰트-->
+	<link
+      rel="stylesheet"
+      as="style"
+      crossorigin
+      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
+    />
+	<link rel="stylesheet" href="css/common.css">
+	<link rel="stylesheet" href="css/home.css">
+	<link rel="stylesheet" href="css/btn.css">
+	<link rel="stylesheet" href="css/other.css">
+</head>
+<body>
+	<header>
+		<a href="index.html">
+			<img src="img/logo/logo.svg" alt="로고" width=100 />
+		</a>
+		<nav>
+			<ul>
+			  <li><a href="crud.html">게시판</a></li>
+			</ul>
+		</nav>
+	</header>
+
+	<main>
+		<section class="banner other-banner">
+			<div class="main-content">
+				<div class="btn-container">
+					<button id="load_test_btn" class="load-btn">불러오기</button>
+					<button id="load_image_btn" class="load-btn">업로드하기</button>
+					<button id="exit_btn" class="exit-btn">종료</button>
+					<button id="neg_btn" class="neg-btn">부정</button>
+					<button id="pos_btn" class="pos-btn">긍정</button>
+					<button id="neu_btn" class="neu-btn">중립</button>
+				</div>
+			</div>
+			
+			<div class="heatmap-container">
+			</div>
+		</section>
+	</main>
+</body>
+</html>
