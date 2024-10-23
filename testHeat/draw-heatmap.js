@@ -37,12 +37,14 @@ function getEmotionCategory(emotion) {
 }
 
 export function getEmo() {
+
     const bufDatas = gazEmo.getGazEmoData();
 
     bufDatas.forEach(bufData => {
         const emotionKeys = Object.keys(bufData.emotion);
 
         if (emotionKeys.length > 0) {
+
             // 높은 확률 감정의 카테고리화
             const emotionCategory = getEmotionCategory(bufData.emotion);
 

@@ -9,7 +9,7 @@ main {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	padding-top: 100px; 
+	padding-top: 80px; 
 }
 
 .banner.heatmap-banner {
@@ -27,9 +27,9 @@ main {
 
 .banner.other-banner {
 	flex: 1;
-  display: flex;
-  position: relative;
-
+	display: flex;
+	position: relative;
+	margin-top: 20px;
 }
 
 .main-content {
@@ -42,8 +42,10 @@ main {
 .heatmap-container {
 	flex: 1;
   background-color: white;
-  border: 1px solid black;
+  border: 1px solid #dfdfdf;
   overflow: auto;
   width: 100%;
-  height: 100%;
+  height: calc(100% - 20px);
+  padding-left: 160px; /* 버튼 영역만큼 왼쪽 패딩 추가 */
+  box-sizing: border-box; /* 패딩을 전체 너비에 포함 */
 }

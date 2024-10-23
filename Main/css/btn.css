@@ -1,23 +1,24 @@
 .btn-container {
   position: absolute;
-  top: 20px;
+  top: 40px; 
   left: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
-  z-index: 10; 
+  z-index: 10;
+  width: 120px; 
 }
 
 .banner button {
   padding: 12px 24px;
-    font-size: 16px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 120px;
-    text-align: center;
-    opacity: 0.8; 
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%; 
+  text-align: center;
+  opacity: 0.8;
 }
 
 #neg_btn {
