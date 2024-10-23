@@ -1,5 +1,6 @@
 import 'regenerator-runtime/runtime';
 import EasySeeSo from 'seeso/easy-seeso';
+
 export default class GazEmo {
     // 생성자: GazEmo 클래스의 인스턴스를 생성하고 필요한 변수들을 초기화합니다.
     constructor(licenseKey, redirectUrl) {
@@ -61,7 +62,7 @@ export default class GazEmo {
         const queryString = decodedURI.split('?')[1];
         if (!queryString || !queryString.includes('calibrationData=')) return undefined;
         const jsonString = queryString.slice('calibrationData='.length, queryString.length);
-        
+
         const decodedJsonString = decodeURIComponent(jsonString);
         console.log('Decoded JSON String:', decodedJsonString);
         return decodedJsonString;
@@ -70,7 +71,7 @@ export default class GazEmo {
     // 시선 추적을 시작하는 함수입니다.
     async startGaze() {
         const calibrationData = this.parseCalibrationDataInQueryString();
-    
+
         if (calibrationData) {
             this.seeSo = new EasySeeSo();
             await this.seeSo.init(
@@ -86,7 +87,7 @@ export default class GazEmo {
         }
     }
 
-    
+
     // 시선 데이터를 수신할 때 호출되는 콜백 함수입니다.
     onGaze(gazeInfo) {
         // 시선 데이터를 gazeBuffer에 추가합니다.
@@ -106,7 +107,7 @@ export default class GazEmo {
         try {
             const stream = await navigator.mediaDevices.getUserMedia({ video: true });
             this.video.srcObject = await stream; // 비디오 엘리먼트에 스트림을 연결합니다.
-        
+
             await new Promise((resolve) => {
                 this.video.onloadeddata = () => {
                     console.log('비디오 로드 완료');
@@ -144,7 +145,7 @@ export default class GazEmo {
         }, 100);
     }
 
-    async loadModels(){
+    async loadModels() {
         await Promise.all([
             faceapi.nets.tinyFaceDetector.loadFromUri('./models'),
             faceapi.nets.faceLandmark68Net.loadFromUri('./models'),
@@ -152,7 +153,7 @@ export default class GazEmo {
             faceapi.nets.faceExpressionNet.loadFromUri('./models'),
         ]).catch((err) => console.error('모델 로딩 실패: ', err));
     }
-    
+
     // 시선 데이터와 감정 데이터를 동기화하는 함수입니다.
     syncData() {
         if (this.emoBuffer) {
