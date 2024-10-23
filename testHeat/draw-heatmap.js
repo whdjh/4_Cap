@@ -1,10 +1,15 @@
 import 'regenerator-runtime/runtime';
 import h337 from 'heatmap.js';
 import * as address from './address'
-import { gazEmo } from './gaze-emo';
+import GazEmo from './gazeEmoClass';
 
 let filteredData = [];
 let trackData = [];
+
+const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l';
+const redirectUrl = 'http://localhost:8082';
+const gazEmo = new GazEmo(licenseKey, redirectUrl);
+
 let heatmapInstance= h337.create({
     container: document.getElementById('heatmapContainer'),  // 히트맵이 표시될 DOM 요소
     radius: 20, // 각 데이터 포인트의 반지름 (픽셀 단위)
@@ -18,61 +23,61 @@ let heatmapInstance= h337.create({
     }
 });
 
-// function getEmotionCategory(emotion) {
-//     const positive = ['happy'];
-//     const neutral = ['neutral', 'surprised'];
-//     const negative = ['sad', 'angry', 'fearful', 'disgusted'];
+function getEmotionCategory(emotion) {
+    const positive = ['happy'];
+    const neutral = ['neutral', 'surprised'];
+    const negative = ['sad', 'angry', 'fearful', 'disgusted'];
 
-//     if (positive.includes(emotion)) return 'positive';
-//     if (neutral.includes(emotion)) return 'neutral';
-//     return 'negative';
-// }
-
-// function getEmo(){
-//     const bufDatas = gazEmo.getGazEmoData();
-
-//     bufDatas.forEach(bufData => {
-//         const emotionKeys = Object.keys(bufData.emotion);
-//         let highestEmotion = '';
-    
-//         if (emotionKeys.length > 0) {
-//             highestEmotion = emotionKeys.reduce((a, b) => {
-//                 return bufData.emotion[a] > bufData.emotion[b] ? a : b;
-//             });
-    
-//             // 높은 확률 감정의 카테고리화
-//             const emotionCategory = getEmotionCategory(highestEmotion);
-
-//             trackData.push({x: bufData.x, y: bufData.y, emoType: emotionCategory})
-
-//         } else {
-//             trackData.push({
-//                 highestEmotion: null,
-//                 category: null
-//             });
-//         }
-//     });
-// }
-async function loadTrackDataFromServer() {
-    try {
-        const response = await fetch('/get-trackdata'); // 서버로 GET 요청
-        if (response.ok) {
-            const trackData = await response.json(); // 서버에서 받은 데이터를 JSON으로 변환
-            console.log('Received track data from server:', trackData);
-            return trackData; // 받아온 데이터를 반환
-        } else {
-            console.error('No track data found on the server');
-            return null; // 데이터가 없을 때 null 반환
-        }
-    } catch (error) {
-        console.error('Error loading track data from server:', error);
-        return null;
-    }
+    if (positive.includes(emotion)) return 'positive';
+    if (neutral.includes(emotion)) return 'neutral';
+    return 'negative';
 }
+
+function getEmo(){
+    const bufDatas = gazEmo.getGazEmoData();
+
+    bufDatas.forEach(bufData => {
+        const emotionKeys = Object.keys(bufData.emotion);
+        let highestEmotion = '';
+    
+        if (emotionKeys.length > 0) {
+            highestEmotion = emotionKeys.reduce((a, b) => {
+                return bufData.emotion[a] > bufData.emotion[b] ? a : b;
+            });
+    
+            // 높은 확률 감정의 카테고리화
+            const emotionCategory = getEmotionCategory(highestEmotion);
+
+            trackData.push({x: bufData.x, y: bufData.y, emoType: emotionCategory})
+
+        } else {
+            trackData.push({
+                highestEmotion: null,
+                category: null
+            });
+        }
+    });
+}
+// async function loadTrackDataFromServer() {
+//     try {
+//         const response = await fetch('/get-trackdata'); // 서버로 GET 요청
+//         if (response.ok) {
+//             const trackData = await response.json(); // 서버에서 받은 데이터를 JSON으로 변환
+//             console.log('Received track data from server:', trackData);
+//             return trackData; // 받아온 데이터를 반환
+//         } else {
+//             console.error('No track data found on the server');
+//             return null; // 데이터가 없을 때 null 반환
+//         }
+//     } catch (error) {
+//         console.error('Error loading track data from server:', error);
+//         return null;
+//     }
+// }
 
 async function generateHeatmap(emotionType){
 
-    const track = await loadTrackDataFromServer();
+    const track = trackData;
 
     if (track) {
         // 감정 유형에 따라 데이터를 필터링
@@ -124,7 +129,9 @@ async function generateHeatmap(emotionType){
 
 async function main() {
     document.getElementById('exit_btn').addEventListener('click', () => {
-        // getEmo();
+        gazEmo.stopGazEmo();
+        getEmo();
+
         const heatmapContainer = document.getElementById('heatmapContainer');
         if (!heatmapContainer) {
             console.error('히트맵 컨테이너가 존재하지 않습니다.');
@@ -154,6 +161,9 @@ async function main() {
 
 }
 
-(async () => {
-  await main();
-})()
+document.addEventListener('DOMContentLoaded', async () => {
+    const videoElement = await document.getElementById('video');
+    await gazEmo.initialize(videoElement);
+    await gazEmo.startGazEmo();
+    await main();
+});

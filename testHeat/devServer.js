@@ -28,30 +28,6 @@ app.use((req, res, next) => {
   next();
 });
 
-let setCal = null;
-
-// setCal 값을 저장하기 위한 엔드포인트
-app.post('/save-setcal', (req, res) => {
-    const cal = req.body.cal; // 클라이언트에서 전송된 cal 값을 받음
-    try {
-        setCal = JSON.parse(decodeURIComponent(cal)); // URL 디코딩 후 JSON 파싱
-        console.log('setCal saved:', setCal);
-        res.sendStatus(200); // 성공적으로 저장된 경우 200 상태 코드 전송
-    } catch (error) {
-        console.error('Error parsing setCal:', error);
-        res.sendStatus(400); // JSON 파싱 에러 시 400 상태 코드 전송
-    }
-});
-
-// setCal 값을 가져오는 엔드포인트
-app.get('/get-setcal', (req, res) => {
-    if (setCal !== null) {
-        res.json({ setCal }); // 저장된 setCal 값을 전송
-    } else {
-        res.sendStatus(404); // 데이터가 없는 경우 404 상태 코드 전송
-    }
-});
-
 let trackDataMemory = null;
 
 // 트랙 데이터 저장을 위한 엔드포인트
