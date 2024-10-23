@@ -31,7 +31,7 @@ async function main() {
     });
     
     const indexBtn = document.getElementById('toindex');
-    indexBtn.addEventListener('click', address.handleLinkClick());
+    await indexBtn.addEventListener('click', address.handleLinkClick);
 
 }
 

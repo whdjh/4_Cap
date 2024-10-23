@@ -1,11 +1,12 @@
 .btn-container {
   position: absolute;
-  top: 20px;
+  top: 40px;
   left: 20px;
   display: flex;
   flex-direction: column;
   gap: 10px;
   z-index: 10; 
+  width: 120px; 
 }
 
 .banner button {
@@ -15,7 +16,7 @@
     border-radius: 25px;
     cursor: pointer;
     transition: all 0.3s ease;
-    width: 120px;
+    width: 100%; 
     text-align: center;
     opacity: 0.8; 
 }
@@ -36,7 +37,7 @@
 }
 
 #all_btn {
-  background-color: rgb(58, 78, 176);
+  background-color: #3a4eb0;
   color: white;
 }
 
