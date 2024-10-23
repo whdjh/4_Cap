@@ -1,32 +1,11 @@
 import 'regenerator-runtime/runtime';
 import EasySeeSo from 'seeso/easy-seeso';
 import { emotions } from './getEmo';
+import * as address from './address'
 
-const licenseKey = '';
+const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l';
 
 let setCal = null;
-
-function onClickCalibrationBtn(page){
-    const userId = 'YOUR_USER_ID'; // ex) 5e9easf293
-    const baseUrl = 'http://localhost:8082';
-    const redirectUrl = `${baseUrl}/${page}`;
-    const calibrationPoint = 5;
-    EasySeeSo.openCalibrationPage(licenseKey, userId, redirectUrl, calibrationPoint);
-}
-
-function parseCalibrationDataInQueryString () {
-    const href = window.location.href
-    const decodedURI = decodeURI(href)
-    const queryString = decodedURI.split('?')[1];
-    if (!queryString || !queryString.includes('calibrationData=')) return undefined;
-    const jsonString = queryString.slice("calibrationData=".length, queryString.length)
-    
-    console.log('Parsed JSON String:', jsonString);
-
-    const decodedJsonString = decodeURIComponent(jsonString);
-    console.log('Decoded JSON String:', decodedJsonString);
-    return decodedJsonString;
-}
 
 async function sendTrackData(newData) {
     try {
@@ -125,33 +104,16 @@ function onDebug(FPS, latency_min, latency_max, latency_avg){
     // do something with debug info.
 }
 
-function handleLinkClick(event) {
-    event.preventDefault(); // 기본 링크 이동을 막음
-    const targetUrl = event.target.href;
-    console.log('targetUrl:', targetUrl);
-    
-    const cal = parseCalibrationDataInQueryString();
-
-    if (cal) {
-        try {
-            // JSON 문자열을 객체로 변환
-            setCal = JSON.parse(cal);
-        } catch (error) {
-            console.error('Error parsing calibration data:', error);
-        }
-    }
-
+function stopTracking() {
+    const seeSo = new EasySeeSo();
+    seeSo.stopTracking();
+    console.log("Tracking stopped");
+    document.getElementById('video').style.display = 'none';
     sendTrackData(trackData);
-
-    console.log('gaze-emo.js cal:', setCal);
-    const calibrationQuery = `?calibrationData=${encodeURIComponent(JSON.stringify(setCal))}`;	
-    const newUrl = `${targetUrl}${calibrationQuery}`;
-    window.location.href = newUrl;
 }
 
-
 async function main() {
-    const caliData = parseCalibrationDataInQueryString();
+    const caliData = address.parseCalibrationDataInQueryString();
 
     if (caliData){
         console.log('seeso 실행', caliData);
@@ -167,8 +129,6 @@ async function main() {
 
                 await seeSo.startTracking(onGaze, onDebug)
 
-                const stopButton = document.getElementById('toheat');
-                stopButton.addEventListener('click', handleLinkClick);
             }, // callback when init succeeded.
             () => console.log("callback when init failed.") // callback when init failed.
         )
@@ -176,9 +136,15 @@ async function main() {
         console.log('No calibration data given.')
         document.addEventListener('DOMContentLoaded', () => {
             const calibrationButton = document.getElementById('calibrationButton');
-            calibrationButton.addEventListener('click', onClickCalibrationBtn);
+            calibrationButton.addEventListener('click', address.onClickCalibrationBtn);
         });
     }
+
+    const exitBtn = document.getElementById('exit_btn');
+    exitBtn.addEventListener('click', stopTracking);
+
+    const indexBtn = document.getElementById('toindex');
+    indexBtn.addEventListener('click', address.handleLinkClick());
 }
 
 (async () => {

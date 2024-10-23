@@ -1,24 +1,58 @@
 import 'regenerator-runtime/runtime';
 import h337 from 'heatmap.js';
+import * as address from './address'
+import { gazEmo } from './gaze-emo';
 
 let filteredData = [];
-let heatmapInstance;
-let setCal = null;
+let trackData = [];
+let heatmapInstance= h337.create({
+    container: document.getElementById('heatmapContainer'),  // 히트맵이 표시될 DOM 요소
+    radius: 20, // 각 데이터 포인트의 반지름 (픽셀 단위)
+    maxOpacity: 0.6, // 최대 불투명도
+    minOpacity: 0.1, // 최소 불투명도
+    blur: 0.75, // 블러 정도
+    gradient: { // 색상 그라디언트 설정 (선택 사항)
+        0.1: 'blue',
+        0.5: 'green',
+        1.0: 'red'
+    }
+});
 
-function parseCalibrationDataInQueryString () {
-    const href = window.location.href
-    const decodedURI = decodeURI(href)
-    const queryString = decodedURI.split('?')[1];
-    if (!queryString || !queryString.includes('calibrationData=')) return undefined;
-    const jsonString = queryString.slice("calibrationData=".length, queryString.length)
+// function getEmotionCategory(emotion) {
+//     const positive = ['happy'];
+//     const neutral = ['neutral', 'surprised'];
+//     const negative = ['sad', 'angry', 'fearful', 'disgusted'];
+
+//     if (positive.includes(emotion)) return 'positive';
+//     if (neutral.includes(emotion)) return 'neutral';
+//     return 'negative';
+// }
+
+// function getEmo(){
+//     const bufDatas = gazEmo.getGazEmoData();
+
+//     bufDatas.forEach(bufData => {
+//         const emotionKeys = Object.keys(bufData.emotion);
+//         let highestEmotion = '';
     
-    console.log('Parsed JSON String:', jsonString);
+//         if (emotionKeys.length > 0) {
+//             highestEmotion = emotionKeys.reduce((a, b) => {
+//                 return bufData.emotion[a] > bufData.emotion[b] ? a : b;
+//             });
+    
+//             // 높은 확률 감정의 카테고리화
+//             const emotionCategory = getEmotionCategory(highestEmotion);
 
-    const decodedJsonString = decodeURIComponent(jsonString);
-    console.log('Decoded JSON String:', decodedJsonString);
-    return decodedJsonString;
-}
+//             trackData.push({x: bufData.x, y: bufData.y, emoType: emotionCategory})
 
+//         } else {
+//             trackData.push({
+//                 highestEmotion: null,
+//                 category: null
+//             });
+//         }
+//     });
+// }
 async function loadTrackDataFromServer() {
     try {
         const response = await fetch('/get-trackdata'); // 서버로 GET 요청
@@ -88,68 +122,35 @@ async function generateHeatmap(emotionType){
     }
 }
 
-function handleLinkClick(event) {
-    event.preventDefault(); // 기본 링크 이동을 막음
-    const targetUrl = event.target.href;
-    console.log('targetUrl:', targetUrl);
-    
-    const cal = parseCalibrationDataInQueryString();
-
-    if (cal) {
-        try {
-            // JSON 문자열을 객체로 변환
-            setCal = JSON.parse(decodeURIComponent(cal));
-        } catch (error) {
-            console.error('Error parsing calibration data:', error);
-        }
-    }
-
-    console.log('draw-heatmap.js cal:', setCal);
-    const calibrationQuery = `?calibrationData=${encodeURIComponent(JSON.stringify(setCal))}`;	
-    const newUrl = `${targetUrl}${calibrationQuery}`;
-    window.location.href = newUrl;
-}
-
 async function main() {
-    const heatmapContainer = document.getElementById('heatmapContainer');
-    if (!heatmapContainer) {
-        console.error('히트맵 컨테이너가 존재하지 않습니다.');
-        return;
-    }
-    
-    heatmapInstance = h337.create({
-        container: document.getElementById('heatmapContainer'),  // 히트맵이 표시될 DOM 요소
-        radius: 20, // 각 데이터 포인트의 반지름 (픽셀 단위)
-        maxOpacity: 0.6, // 최대 불투명도
-        minOpacity: 0.1, // 최소 불투명도
-        blur: 0.75, // 블러 정도
-        gradient: { // 색상 그라디언트 설정 (선택 사항)
-            0.1: 'blue',
-            0.5: 'green',
-            1.0: 'red'
+    document.getElementById('exit_btn').addEventListener('click', () => {
+        // getEmo();
+        const heatmapContainer = document.getElementById('heatmapContainer');
+        if (!heatmapContainer) {
+            console.error('히트맵 컨테이너가 존재하지 않습니다.');
+            return;
         }
-    });
 
-      
-    // 히트맵 필터링 버튼들 클릭 이벤트
-    document.getElementById('showAll').addEventListener('click', () => {
-        generateHeatmap('full'); // 전체 감정 히트맵
-    });
+        // 히트맵 필터링 버튼들 클릭 이벤트
+        document.getElementById('showAll_btn').addEventListener('click', () => {
+            generateHeatmap('full'); // 전체 감정 히트맵
+        });
 
-    document.getElementById('pos_btn').addEventListener('click', () => {
-        generateHeatmap('positive'); // 긍정 감정만 보여주기
-    });
+        document.getElementById('pos_btn').addEventListener('click', () => {
+            generateHeatmap('positive'); // 긍정 감정만 보여주기
+        });
 
-    document.getElementById('neu_btn').addEventListener('click', () => {
-        generateHeatmap('neutral'); // 중립 감정만 보여주기
-    });
+        document.getElementById('neu_btn').addEventListener('click', () => {
+            generateHeatmap('neutral'); // 중립 감정만 보여주기
+        });
 
-    document.getElementById('neg_btn').addEventListener('click', () => {
-        generateHeatmap('negative'); // 부정 감정만 보여주기
+        document.getElementById('neg_btn').addEventListener('click', () => {
+            generateHeatmap('negative'); // 부정 감정만 보여주기
+        });
     });
-
+    
     const indexBtn = document.getElementById('toindex');
-    indexBtn.addEventListener('click', handleLinkClick);
+    indexBtn.addEventListener('click', address.handleLinkClick());
 
 }
 
