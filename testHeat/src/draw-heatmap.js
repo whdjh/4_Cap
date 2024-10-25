@@ -7,14 +7,16 @@ let trackData = [];
 
 let heatmapInstance = h337.create({
     container: document.getElementById('heatmapContainer'),  // 히트맵이 표시될 DOM 요소
-    radius: 20, // 각 데이터 포인트의 반지름 (픽셀 단위)
+    radius: 30, // 각 데이터 포인트의 반지름 (픽셀 단위)
     maxOpacity: 0.6, // 최대 불투명도
     minOpacity: 0.1, // 최소 불투명도
-    blur: 0.75, // 블러 정도
+    blur: 0.85, // 블러 정도
     gradient: { // 색상 그라디언트 설정 (선택 사항)
-        0.1: 'blue',
-        0.5: 'green',
-        1.0: 'red'
+        '0.0': 'blue',         // 낮은 밀도 - 파란색
+        '0.25': 'cyan',        // 낮은-중간 밀도 - 청록색
+        '0.5': 'lime',         // 중간 밀도 - 연녹색
+        '0.75': 'yellow',      // 중간-높은 밀도 - 노란색
+        '1.0': 'red'           // 높은 밀도 - 빨간색
     }
 });
 
