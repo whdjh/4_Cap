@@ -57,6 +57,12 @@ main {
 	box-sizing: border-box;
 }
 
+.heatmap_video {
+	margin: 0px 1200px 0px 100px;
+	padding: 0px 300px 300px 200px;
+	z-index: 2;
+}
+
 .video {
 	z-index: -1;
 }

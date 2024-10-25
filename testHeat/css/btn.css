@@ -9,36 +9,23 @@
   width: 120px; 
 }
 
-.banner button {
+header button {
   padding: 12px 24px;
-    font-size: 16px;
-    border: none;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    width: 100%; 
-    text-align: center;
-    opacity: 0.8; 
+  font-size: 16px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: 100%; 
+  text-align: center;
+  opacity: 0.8; 
+  margin: 12px 12px
 }
 
-#neg_btn {
-  background-color: #ff6b6b;
-  color: white;
-}
-
-#pos_btn {
-  background-color: gold;
-  color: white;
-}
-
-#neu_btn {
-  background-color: green;
-  color: white;
-}
-
-#all_btn {
-  background-color: #3a4eb0;
-  color: white;
+header button:hover {
+	opacity: 1;
+  transform: translateY(-3px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #exit_btn {
@@ -46,10 +33,44 @@
   color: white;
 }
 
-.banner button:hover {
-	opacity: 1;
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+#showAll_btn{
+  background-color: silver;
+  color: white;
+}
+
+#angry_btn {
+  background-color: #ff6b6b;
+  color: white;
+}
+
+#disgusted_btn {
+  background-color: gold;
+  color: white;
+}
+
+#fearful_btn {
+  background-color: green;
+  color: white;
+}
+
+#happy_btn {
+  background-color: #3a4eb0;
+  color: white;
+}
+
+#neutral_btn {
+  background-color: violet;
+  color: white;
+}
+
+#sad_btn {
+  background-color: mediumspringgreen;
+  color: white;
+}
+
+#surprised_btn {
+  background-color: brown;
+  color: white;
 }
 
 .banner.other-banner {
