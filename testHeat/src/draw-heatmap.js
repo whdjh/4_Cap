@@ -1,122 +1,74 @@
 import 'regenerator-runtime/runtime';
 import h337 from 'heatmap.js';
-import { gazEmo } from './imgcase';
 
-let filteredData = [];
-let trackData = [];
-
-let heatmapInstance = h337.create({
-    container: document.getElementById('heatmapContainer'),  // 히트맵이 표시될 DOM 요소
-    radius: 30, // 각 데이터 포인트의 반지름 (픽셀 단위)
-    maxOpacity: 0.6, // 최대 불투명도
-    minOpacity: 0.1, // 최소 불투명도
-    blur: 0.85, // 블러 정도
-    gradient: { // 색상 그라디언트 설정 (선택 사항)
-        '0.0': 'blue',         // 낮은 밀도 - 파란색
-        '0.25': 'cyan',        // 낮은-중간 밀도 - 청록색
-        '0.5': 'lime',         // 중간 밀도 - 연녹색
-        '0.75': 'yellow',      // 중간-높은 밀도 - 노란색
-        '1.0': 'red'           // 높은 밀도 - 빨간색
-    }
-});
-
-function getEmotionCategory(emotion) {
-    const positiveEmotions = ['happy'];
-    const neutralEmotions = ['neutral', 'surprised'];
-    const negativeEmotions = ['sad', 'angry', 'fearful', 'disgusted'];
-
-    // 긍정, 중립, 부정 감정 확률 합산
-    const positiveProb = positiveEmotions.reduce((sum, emo) => sum + (emotion[emo] || 0), 0);
-    const neutralProb = neutralEmotions.reduce((sum, emo) => sum + (emotion[emo] || 0), 0);
-    const negativeProb = negativeEmotions.reduce((sum, emo) => sum + (emotion[emo] || 0), 0);
-
-    // 가장 높은 확률을 가진 카테고리 반환
-    const maxProb = Math.max(positiveProb, neutralProb, negativeProb);
-
-    if (maxProb === positiveProb) return 'positive';
-    if (maxProb === neutralProb) return 'neutral';
-    return 'negative';
-}
-
-export function getEmo() {
-
-    const bufDatas = gazEmo.getGazEmoData();
-
-    bufDatas.forEach(bufData => {
-        const emotionKeys = Object.keys(bufData.emotion);
-
-        if (emotionKeys.length > 0) {
-
-            // 높은 확률 감정의 카테고리화
-            const emotionCategory = getEmotionCategory(bufData.emotion);
-
-            trackData.push({ x: bufData.x, y: bufData.y, emoType: emotionCategory })
-
-        } else {
-            trackData.push({
-                x: bufData.x,
-                y: bufData.y,
-                emoType: null
-            });
+// 데이터가 다른 파일에서 전달될 것으로 가정하고, 매개변수로 받도록 함
+export function createEmotionHeatmap(data) {
+    const heatmapInstance = h337.create({
+        container: document.getElementById('heatmapContainer'),
+        radius: 30, // 각 데이터 포인트의 반지름 (픽셀 단위)
+        maxOpacity: 0.6, // 최대 불투명도
+        minOpacity: 0.1, // 최소 불투명도
+        blur: 0.85, // 블러 정도
+        gradient: { // 색상 그라디언트 설정 (더 세부적으로 나누기)
+            '0.0': 'blue',            // 매우 낮은 밀도 - 파란색
+            '0.1': 'deepskyblue',     // 낮은 밀도 - 밝은 파란색
+            '0.2': 'cyan',            // 낮음 - 청록색
+            '0.3': 'springgreen',     // 낮음 - 밝은 초록색
+            '0.4': 'lime',            // 중간 정도 - 연녹색
+            '0.5': 'greenyellow',     // 중간 정도 - 노란빛 초록색
+            '0.6': 'yellow',          // 중간-높음 - 노란색
+            '0.7': 'orange',          // 높음 - 주황색
+            '0.8': 'orangered',       // 높음 - 빨간빛 주황색
+            '0.9': 'red',             // 매우 높음 - 빨간색
+            '1.0': 'darkred'          // 극히 높음 - 어두운 빨간색
         }
     });
-    return trackData;
-}
 
-export async function generateHeatmap(emotionType, data) {
-    const heatmapContainer = document.getElementById('heatmapContainer');
-    if (!heatmapContainer) {
-        console.error('히트맵 컨테이너가 존재하지 않습니다.');
-        return;
+    // 감정 리스트
+    const emotions = ["angry", "disgusted", "fearful", "happy", "neutral", "sad", "surprised"];
+
+    // 감정별 데이터 필터링 함수
+    function filterDataByEmotion(emotionKey) {
+        const filteredData = data.reduce((acc, curr) => {
+            const value = curr.emotion[emotionKey] || 0;
+            if (value > 0.01) {
+                acc.push({
+                    x: curr.x,
+                    y: curr.y,
+                    value: value,
+                });
+            }
+            return acc;
+        }, []);
+        return filteredData;
     }
 
-    const track = data;
-    console.log('trackData', track);
-
-    if (track) {
-        // 감정 유형에 따라 데이터를 필터링
-        switch (emotionType) {
-            case 'full':         // 전체 히트맵
-                console.log('전체 히트맵')
-                filteredData = track.map(item => ({
-                    x: item.x,
-                    y: item.y,
-                    value: 20
-                }));
-                break;
-            case 'positive':     // positive 히트맵
-                console.log('긍정 히트맵')
-                filteredData = track
-                    .filter(item => item.emoType === 'positive')
-                    .map(item => ({ x: item.x, y: item.y, value: 20 }));
-                console.log(filteredData)
-                break;
-
-            case 'neutral':      // neutral 히트맵
-                console.log('중립 히트맵')
-                filteredData = track
-                    .filter(item => item.emoType === 'neutral')
-                    .map(item => ({ x: item.x, y: item.y, value: 20 }));
-                console.log(filteredData)
-                break;
-
-            case 'negative':     // negative 히트맵
-                console.log('부정 히트맵')
-                filteredData = track
-                    .filter(item => item.emoType === 'negative')
-                    .map(item => ({ x: item.x, y: item.y, value: 20 }));
-                console.log(filteredData)
-                break;
-
-            default:
-                console.log("Invalid type");
-                return;
-        }
-
-        // 이전 히트맵을 지우고 새 데이터로 히트맵 생성
-        heatmapInstance.setData({ data: filteredData });
-        console.log('히트맵 생성', filteredData)
-    } else {
-        console.log('No track data available for heatmap');
+    // 히트맵 그리기 함수
+    function drawHeatmap(dataPoints) {
+        heatmapInstance.setData({
+            max: 1.5, // 각 타임스탬프의 감정 합이 1이므로 최대값은 1
+            data: dataPoints
+        });
     }
+
+    // '전체' 버튼 클릭 이벤트
+    document.getElementById("showAll_btn").addEventListener("click", () => {
+        const allData = data.map(d => ({
+            x: d.x,
+            y: d.y,
+            value: Object.values(d.emotion).reduce((acc, v) => acc + v, 0) // 모든 감정 값 합산
+        }));
+        drawHeatmap(allData);
+    });
+
+    // 감정별 버튼 클릭 이벤트
+    emotions.forEach(emotion => {
+        document.getElementById(`${emotion}_btn`).addEventListener("click", () => {
+            const emotionData = filterDataByEmotion(emotion);
+            drawHeatmap(emotionData);
+        });
+    });
+
+    // 초기화 시 전체 감정 히트맵을 표시
+    document.getElementById("showAll_btn").click();
 }
