@@ -1,6 +1,6 @@
 body {
 	overflow: hidden;
-	position: pixed;
+	position: fixed;
 	top: 0;
 	display: flex;
 	flex-direction: column;
@@ -45,8 +45,6 @@ main {
 
 .heatmap-container {
 	position: absolute;
-	/* background-color: white; */
-	/* border: 1px solid black; */
 	top: 0;
 	left: 0;
 	width: 100%;
@@ -57,31 +55,34 @@ main {
 	box-sizing: border-box;
 }
 
+#videoContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+	position: relative;
+	z-index: 2;
+}
+
 .heatmap_video {
+	width: 100%;
+	max-width: 720px;
+	margin: 0px 1200px 0px 100px;
+	padding: 0px 300px 0px 200px;
+	z-index: 2;
+}
+
+#displayEmotion {
+	margin-top: 10px; /* 비디오 아래 간격 */
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    width: 100%;
+	max-width: 720px;
 	margin: 0px 1200px 0px 100px;
 	padding: 0px 300px 300px 200px;
-	z-index: 2;
 }
 
 .video {
 	z-index: -1;
-}
-
-.image-pair {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.image-wrapper {
-  flex: 1;
-  display: flex;
-  justify-content: center; 
-}
-
-.analysis-image {
-	margin-top: 50px;
-  width: 500px;
-  height: 500px; 
-  object-fit: cover; 
 }
