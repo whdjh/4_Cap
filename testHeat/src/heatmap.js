@@ -1,6 +1,6 @@
 import 'regenerator-runtime/runtime';
-import * as address from './address';
 import * as heatmap from './draw-heatmap';
+import * as address from './address';
 import GazEmo from './gazeEmoClass';
 
 
@@ -48,7 +48,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('exit_btn').addEventListener('click', () => {
         gazEmo.stopGazEmo();
         heatmap.createEmotionHeatmap(gazEmo.getGazEmoData());
-    }, {once: true});
+    }, { once: true });
 
     const indexBtn = document.getElementById('toindex');
     indexBtn.addEventListener('click', address.handleLinkClickToIdx);

@@ -1,7 +1,7 @@
 import 'regenerator-runtime/runtime';
+import * as heatmap from './draw-heatmap'
 import * as address from './address'
 import GazEmo from './gazeEmoClass';
-import * as heatmap from './draw-heatmap'
 
 const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l';
 const redirectUrl = 'http://localhost:8082/imgcase.html';
@@ -16,7 +16,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.getElementById('exit_btn').addEventListener('click', () => {
         gazEmo.stopGazEmo();
         heatmap.createEmotionHeatmap(gazEmo.getGazEmoData());
-    }, {once: true});
+    }, { once: true });
 
     const indexBtn = document.getElementById('toindex');
     indexBtn.addEventListener('click', address.handleLinkClickToIdx);
