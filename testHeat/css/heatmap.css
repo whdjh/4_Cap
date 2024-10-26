@@ -1,0 +1,88 @@
+body {
+	overflow: hidden;
+	position: fixed;
+	top: 0;
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
+	margin: 0;
+}
+
+main {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	padding-top: 80px;
+}
+
+.banner.heatmap-banner {
+	flex: 1;
+	height: auto;
+	background-color: #cfe5ff;
+	display: flex;
+	flex-direction: column;
+}
+
+.main-content {
+	display: flex;
+	width: 100%;
+}
+
+.banner.other-banner {
+	flex: 1;
+	display: flex;
+	position: relative;
+	padding: 0;	/* 히트맵 위치 */
+	margin-top: 20px;
+}
+
+.main-content {
+	display: flex;
+	flex-direction: column;
+	width: auto;
+	margin-right: 20px;
+}
+
+.heatmap-container {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100vh;	/* height 건드리면 히트맵 안나옴*/
+	z-index: 1;
+	overflow: auto;
+	padding-left: 160px;
+	box-sizing: border-box;
+}
+
+#videoContainer {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 20px;
+	position: relative;
+	z-index: 2;
+}
+
+.heatmap_video {
+	width: 100%;
+	max-width: 720px;
+	margin: 0px 1200px 0px 100px;
+	padding: 0px 300px 0px 200px;
+	z-index: 2;
+}
+
+#displayEmotion {
+	margin-top: 10px; /* 비디오 아래 간격 */
+    font-size: 18px;
+    color: #333;
+    text-align: center;
+    width: 100%;
+	max-width: 720px;
+	margin: 0px 1200px 0px 100px;
+	padding: 0px 300px 300px 200px;
+}
+
+.video {
+	z-index: -1;
+}

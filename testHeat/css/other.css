@@ -1,6 +1,6 @@
 body {
 	overflow: hidden;
-	position: pixed;
+	/* position: fixed; */
 	top: 0;
 	display: flex;
 	flex-direction: column;
@@ -65,4 +65,23 @@ main {
 
 .video {
 	z-index: -1;
+}
+
+.image-pair {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.image-wrapper {
+  flex: 1;
+  display: flex;
+  justify-content: center; 
+}
+
+.analysis-image {
+	margin-top: 50px;
+  width: 500px;
+  height: 500px; 
+  object-fit: cover; 
 }

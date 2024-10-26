@@ -37,7 +37,7 @@ export default class GazEmo {
         if (this.emotionDetectionInterval) {
             clearInterval(this.emotionDetectionInterval); // 감정 인식 주기적인 호출을 중지합니다.
         }
-        document.getElementById('video').style.display = 'none';
+        this.video.style.display = 'none';
         console.log("시선 추적 및 감정 인식을 중단했습니다.");
         console.log(this.GazEmoBuf); // 수집된 데이터를 출력합니다.
     }
