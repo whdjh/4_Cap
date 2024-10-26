@@ -15,8 +15,7 @@ header button {
   border: none;
   border-radius: 25px;
   cursor: pointer;
-  transition: all 0.3s ease;
-  width: 100%; 
+  transition: all 0.3s ease; 
   text-align: center;
   opacity: 0.8; 
   margin: 12px 12px
@@ -73,25 +72,14 @@ header button:hover {
   color: white;
 }
 
+#load_btn {
+  background-color: orange;
+  color: white;
+}
+
 .banner.other-banner {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 20px;
-}
-
-.load-btn {
-  padding: 12px 24px;
-  font-size: 16px;
-  border: none;
-  border-radius: 25px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  background-color: silver;
-  color: white;
-}
-
-.load-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
