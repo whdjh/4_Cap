@@ -39,7 +39,10 @@
 		<section class="banner other-banner">
 			<div class="heatmap-container" id="heatmapContainer"></div>
 			<canvas id="output" style="position: fixed;"></canvas>
-			<video id="heatmap_video" width="720" height="560" class="heatmap_video" autoplay muted></video>
+			<div id="videoContainer">
+				<video id="heatmap_video" width="720" height="230" class="heatmap_video" autoplay muted></video>
+				<div class="display-emotion" id="displayEmotion"></div>
+			</div>
 		</section>
 	</main>
 	<script src="./src/heatmap.js"></script>

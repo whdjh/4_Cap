@@ -35,6 +35,44 @@ document.addEventListener('DOMContentLoaded', async () => {
             let ctx = this.canvas.getContext("2d");
             ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         }
+
+        startEmo() {
+            const canvas = faceapi.createCanvasFromMedia(this.video);
+            document.body.append(canvas);
+            const displaySize = { width: this.video.width, height: this.video.height }; 
+            faceapi.matchDimensions(canvas, displaySize); 
+            const emoDisplay = document.getElementById('displayEmotion')
+
+            const updateEmoDisplay = (expressions) => {
+                const resultText = `
+                    happy: ${(expressions.happy * 100).toFixed(2)}%<br>
+                    sad: ${(expressions.sad * 100).toFixed(2)}%<br>
+                    angry: ${(expressions.angry * 100).toFixed(2)}%<br>
+                    fearful: ${(expressions.fearful * 100).toFixed(2)}%<br>
+                    disgusted: ${(expressions.disgusted * 100).toFixed(2)}%<br>
+                    surprised: ${(expressions.surprised * 100).toFixed(2)}%<br>
+                    neutral: ${(expressions.neutral * 100).toFixed(2)}%
+                `;
+        
+                emoDisplay.innerHTML = resultText;
+            };
+
+            this.emotionDetectionInterval = setInterval(async () => {
+                const timestamp = Date.now(); 
+                const detections = await faceapi
+                    .detectAllFaces(this.video, new faceapi.TinyFaceDetectorOptions()) 
+                    .withFaceLandmarks() 
+                    .withFaceExpressions(); 
+                const resizedDetections = faceapi.resizeResults(detections, displaySize); 
+
+                if (resizedDetections.length > 0) {
+                    const expressions = resizedDetections[0].expressions; 
+                    this.emoBuffer = { expressions, timestamp }; 
+                    this.syncData(); 
+                    updateEmoDisplay(expressions);
+                }
+            }, 100);
+        }
     }
 
     const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l';
