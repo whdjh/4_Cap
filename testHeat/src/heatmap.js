@@ -36,15 +36,13 @@ document.addEventListener('DOMContentLoaded', async () => {
             ctx.clearRect(0, 0, this.canvas.width, this.canvas.height)
         }
 
-        startEmo() {
-            const canvas = faceapi.createCanvasFromMedia(this.video);
-            document.body.append(canvas);
-            const displaySize = { width: this.video.width, height: this.video.height }; 
-            faceapi.matchDimensions(canvas, displaySize); 
+        syncData() {
+            super.syncData();
             const emoDisplay = document.getElementById('displayEmotion')
-
-            const updateEmoDisplay = (expressions) => {
+            const lastData = this.GazEmoBuf[this.GazEmoBuf.length - 1];
+            const updateEmoDisplay = (expressions, timeDiff) => {
                 const resultText = `
+                    timeDiff: ${(timeDiff)}ms<br>
                     happy: ${(expressions.happy * 100).toFixed(2)}%<br>
                     sad: ${(expressions.sad * 100).toFixed(2)}%<br>
                     angry: ${(expressions.angry * 100).toFixed(2)}%<br>
@@ -57,21 +55,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 emoDisplay.innerHTML = resultText;
             };
 
-            this.emotionDetectionInterval = setInterval(async () => {
-                const timestamp = Date.now(); 
-                const detections = await faceapi
-                    .detectAllFaces(this.video, new faceapi.TinyFaceDetectorOptions()) 
-                    .withFaceLandmarks() 
-                    .withFaceExpressions(); 
-                const resizedDetections = faceapi.resizeResults(detections, displaySize); 
-
-                if (resizedDetections.length > 0) {
-                    const expressions = resizedDetections[0].expressions; 
-                    this.emoBuffer = { expressions, timestamp }; 
-                    this.syncData(); 
-                    updateEmoDisplay(expressions);
-                }
-            }, 100);
+            updateEmoDisplay(lastData.emotion, lastData.time);
         }
     }
 
