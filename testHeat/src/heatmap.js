@@ -41,15 +41,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     const redirectUrl = 'http://localhost:8082/heatmap.html';
     const gazEmo = new CustomGazEmo(licenseKey, redirectUrl);
 
-    const videoElement = document.getElementById('video');
+    const videoElement = document.getElementById('heatmap_video');
     await gazEmo.initialize(videoElement);
     await gazEmo.startGazEmo();
 
     document.getElementById('exit_btn').addEventListener('click', () => {
         gazEmo.stopGazEmo();
-
         heatmap.createEmotionHeatmap(gazEmo.getGazEmoData());
-    });
+    }, {once: true});
 
     const indexBtn = document.getElementById('toindex');
     indexBtn.addEventListener('click', address.handleLinkClickToIdx);
