@@ -1,33 +1,26 @@
 console.log("uploadimg.js loaded");
 
 document.addEventListener("DOMContentLoaded", function() {
-    // List of possible images to load randomly
-    const imgSources = [
-        'img/random/1.jpeg',
-        'img/random/2.webp',
-        'img/random/3.jpeg',
-        'img/random/4.jpeg' // Ensure all paths are correct
+    const imageSources = [
+        'img/1.jpeg',
+        'img/2.webp',
+        'img/3.jpeg',
+        'img/4.jpeg'  
     ];
 
-    // Function to load random images
     function loadRandomImages() {
-        // Select two different random images
-        const randomIndex1 = Math.floor(Math.random() * imgSources.length);
-        let randomIndex2 = Math.floor(Math.random() * imgSources.length);
+        console.log("click!");
         
-        // Ensure the two images are different
+        const randomIndex1 = Math.floor(Math.random() * imageSources.length);
+        let randomIndex2 = Math.floor(Math.random() * imageSources.length);
+
         while (randomIndex2 === randomIndex1) {
-            randomIndex2 = Math.floor(Math.random() * imgSources.length);
+            randomIndex2 = Math.floor(Math.random() * imageSources.length);
         }
 
-        // Update the image sources
-        document.getElementById('displayImage').src = imgSources[randomIndex1];
-        document.getElementById('heatmapImage').src = imgSources[randomIndex2];
+        document.getElementById('displayImage').src = imageSources[randomIndex1];
+        document.getElementById('heatmapImage').src = imageSources[randomIndex2];
     }
 
-    // Add event listener to the load button
-    document.getElementById('load_btn').addEventListener('click', function() {
-        loadRandomImages(); // Call the function to load images on click
-				console.log("Button clicked!"); // Log click for debugging
-    });
+    document.getElementById('load_btn').addEventListener('click', loadRandomImages);
 });
