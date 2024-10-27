@@ -21,39 +21,26 @@
 4학년 졸업작품으로 진행한 감정인식과 아이트래킹을 이용한 학습 보조도구입니다.
 
 ## 시작 가이드
-아래는 예시임
 ### Requirements
 For building and running the application you need:
-
 - [Node.js 14.19.3](https://nodejs.org/ca/blog/release/v14.19.3/)
 - [Npm 9.2.0](https://www.npmjs.com/package/npm/v/9.2.0)
-- [Strapi 3.6.6](https://www.npmjs.com/package/strapi/v/3.6.6)
 
 ### Installation
 ``` bash
 $ git clone https://github.com/Voluntain-SKKU/Voluntain-2nd.git
-$ cd Voluntain-2nd
-```
-
-#### Backend
-```
-$ cd strapi-backend
-$ nvm use v.14.19.3
-$ npm install
-$ npm run develop
+$ cd 4_Cap
 ```
 
 #### Frontend
 ```
-$ cd voluntain-app
-$ nvm use v.14.19.3
+$ cd 4_Cap
 $ npm install 
-$ npm run dev
+$ npm run calibration
 ```
 
 ## 기술스택
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=Javascript&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=for-the-badge&logo=Bootstrap&logoColor=white)
 
 ## 개발 환경
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)

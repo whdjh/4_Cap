@@ -5,6 +5,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TrackEmo(텍스트)</title>
 	<link rel="icon" href="img/logo/favicon.ico">
+	<script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.min.js" integrity="sha512-FpvmtV53P/z7yzv1TAIVH7PNz94EKXs5aV6ts/Zi+B/VeGU5Xwo6KIbwpTgKc0d4urD/BtkK50IC9785y68/AA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<!--웹폰트-->
 	<link
       rel="stylesheet"
@@ -19,42 +21,31 @@
 </head>
 <body>
 	<header>
-		<a href="index.html">
+		<a href="index.html" id="toindex">
 			<img src="img/logo/logo.svg" alt="로고" width=100 />
 		</a>
-		<nav>
-			<ul>
-			  <li><a href="crud.html">게시판</a></li>
-			</ul>
-		</nav>
+		<button id="exit_btn" class="exit-btn">종료</button>
+		<button id="showAll_btn" class="all-btn">전체</button>
+		<button id="angry_btn">Angry</button>
+		<button id="disgusted_btn">Disgusted</button>
+		<button id="fearful_btn">Fearful</button>
+		<button id="happy_btn">Happy</button>
+		<button id="neutral_btn">Neutral</button>
+		<button id="sad_btn">Sad</button>
+		<button id="surprised_btn">Surprised</button>
 	</header>
 
 	<main>
-		<section class="banner other-banner">
+		<section class="banner other-banner" id="tracking">
 			<div class="main-content">
-				<div class="btn-container">
-					<button id="load_test_btn" class="load-btn">불러오기</button>
-					<button id="load_image_btn" class="load-btn">업로드하기</button>
-					<button id="exit_btn" class="exit-btn">종료</button>
-					<button id="neg_btn" class="neg-btn">부정</button>
-					<button id="pos_btn" class="pos-btn">긍정</button>
-					<button id="neu_btn" class="neu-btn">중립</button>
-				</div>
+				<video id="video" width="720" height="560" class="video" autoplay muted></video>
 			</div>
 			
-			<div class="heatmap-container">
+			<div class="heatmap-container" id="heatmapContainer">
 			</div>
 		</section>
 	</main>
 
-	<footer>
-		<div id="github_profile">
-			<a href="https://github.com/whdjh" target="_blank" rel="noopener noreferrer"><img src="img/social/github-logo.svg" width=42 alt="이주훈"/></a>
-			<a href="https://github.com/kimhotac" target="_blank" rel="noopener noreferrer"><img src="img/social/github-logo.svg" width=42 alt="김호탁"/></a>
-			<a href="https://github.com/petite-coder" target="_blank" rel="noopener noreferrer"><img src="img/social/github-logo.svg" width=42 alt="이예은"/></a>
-		</div>
-	</footer>
-
-	<script src="./src/cali.js"></script>
+	<script src="./src/textcase.js"></script>
 </body>
 </html>

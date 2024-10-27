@@ -4,7 +4,7 @@ import * as address from './address'
 import GazEmo from './gazeEmoClass';
 
 const licenseKey = 'dev_fafdh08rb5wsibob5c1xy5nm7wpjdc26alecpx2l';
-const redirectUrl = 'http://localhost:8082/imgcase.html';
+const redirectUrl = 'http://localhost:8082/textcase.html';
 export const gazEmo = new GazEmo(licenseKey, redirectUrl);
 
 document.addEventListener('DOMContentLoaded', async () => {
