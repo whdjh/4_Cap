@@ -11,8 +11,8 @@ export function handleLinkClickToIdx(event) {
     const urlParams = new URLSearchParams(window.location.search);
     const calibrationData = urlParams.get('calibrationData');
 
-    if (calibrationData) {
-        targetUrl.searchParams.set('calibrationData', calibrationData);
+    if(calibrationData) {
+      targetUrl.searchParams.set('calibrationData', calibrationData);
     }
     
     window.location.href = targetUrl.toString();
@@ -28,16 +28,17 @@ export function handleLinkClickFromIdx(event) {
     const calibrationData = urlParams.get('calibrationData');
 
     if (calibrationData) {
-        targetUrl.searchParams.set('calibrationData', calibrationData);
-        window.location.href = targetUrl.toString();
-    } else {
-        startCalibration(targetUrl.toString()); // 캘리브레이션 과정 시작
+      targetUrl.searchParams.set('calibrationData', calibrationData);
+      window.location.href = targetUrl.toString();
+    } 
+		else {
+      startCalibration(targetUrl.toString()); // 캘리브레이션 과정 시작
     }
 }
 
 
 function startCalibration(page) {
-    const userId = 'YOUR_USER_ID';
-    const calibrationPoint = 5;
-    EasySeeSo.openCalibrationPage(licenseKey, userId, page, calibrationPoint);
+  const userId = 'YOUR_USER_ID';
+  const calibrationPoint = 5;
+  EasySeeSo.openCalibrationPage(licenseKey, userId, page, calibrationPoint);
 }

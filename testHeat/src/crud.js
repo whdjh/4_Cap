@@ -14,35 +14,36 @@ document.addEventListener("DOMContentLoaded", () => {
 	  const file = postFile.files[0]; 
   
 	  if (title && content) {
-		if (file && file.type === "application/zip") {
-		  const reader = new FileReader();
-		  reader.onload = function () {
-			const fileData = reader.result; 
+			if (file && file.type === "application/zip") {
+		  	const reader = new FileReader();
+		  	reader.onload = function () {
+					const fileData = reader.result; 
   
-			const post = {
-			  id: Date.now(),
-			  title: title,
-			  content: content,
-			  fileName: file.name,
-			  fileData: fileData 
-			};
-			posts.push(post);
-			renderPosts();
-			postForm.reset();
-		  };
-		  reader.readAsDataURL(file); 
-		} else {
-		  const post = {
-			id: Date.now(), 
-			title: title,
-			content: content,
-			fileName: null, 
-			fileData: null
-		  };
-		  posts.push(post);
-		  renderPosts();
-		  postForm.reset();
-		}
+					const post = {
+			  		id: Date.now(),
+			  		title: title,
+			  		content: content,
+			  		fileName: file.name,
+			  		fileData: fileData 
+					};
+					posts.push(post);
+					renderPosts();
+					postForm.reset();
+		  	};
+		  	reader.readAsDataURL(file); 
+			} 
+			else {
+		  	const post = {
+					id: Date.now(), 
+					title: title,
+					content: content,
+					fileName: null, 
+					fileData: null
+		  	};
+		  	posts.push(post);
+		  	renderPosts();
+		  	postForm.reset();
+			}
 	  }
 	});
   
@@ -69,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		li.appendChild(title);
 		li.appendChild(content);
   
-		if (post.fileData) {
+		if(post.fileData) {
 		  const downloadLink = document.createElement("a");
 		  downloadLink.href = post.fileData; 
 		  downloadLink.download = post.fileName; 
@@ -86,9 +87,9 @@ document.addEventListener("DOMContentLoaded", () => {
 	function editPost(id) {
 	  const post = posts.find(post => post.id === id);
 	  if (post) {
-		postTitle.value = post.title;
-		postContent.value = post.content;
-		delPost(id); 
+			postTitle.value = post.title;
+			postContent.value = post.content;
+			delPost(id); 
 	  }
 	}
   

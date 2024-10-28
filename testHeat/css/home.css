@@ -6,9 +6,21 @@
   align-items: center;
 	background-color: #cfe5ff;
 	background-repeat: no-repeat;
-  background-position: 80% bottom;
-  background-size: 55%;
+  background-position: 70% bottom;
+  background-size: 30%;
 	border: 2px solid white;
+}
+
+#heatmap {
+	background-image: url("../img/heatmap-image.png");
+}
+
+#img_case {
+	background-image: url("../img/img.png");
+}
+
+#text_case {
+	background-image: url("../img/img.png");
 }
 
 .banner h1 {
@@ -17,7 +29,7 @@
 
 .wrapper {
 	width: 100%;
-  	padding: 0 16px;
+  padding: 0 16px;
 }
 
 /* btn */
@@ -41,9 +53,9 @@
 
 .watch-btn {
 	font-size: 16px;
-  	font-weight: 600;
-  	border-radius: 999px;
-  	padding: 14.5px 33.5px;
+  font-weight: 600;
+  border-radius: 999px;
+  padding: 14.5px 33.5px;
 }
 
 #btn_section {

@@ -74,10 +74,10 @@ main {
 
 #displayEmotion {
 	margin-top: 10px; /* 비디오 아래 간격 */
-    font-size: 18px;
-    color: #333;
-    text-align: center;
-    width: 100%;
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+  width: 100%;
 	max-width: 720px;
 	margin: 0px 1200px 0px 100px;
 	padding: 0px 300px 300px 200px;
