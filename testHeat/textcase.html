@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>TrackEmo(텍스트)</title>
 	<link rel="icon" href="img/logo/favicon.ico">
 	<script src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.min.js" integrity="sha512-FpvmtV53P/z7yzv1TAIVH7PNz94EKXs5aV6ts/Zi+B/VeGU5Xwo6KIbwpTgKc0d4urD/BtkK50IC9785y68/AA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/heatmap.js/2.0.0/heatmap.min.js"
+		integrity="sha512-FpvmtV53P/z7yzv1TAIVH7PNz94EKXs5aV6ts/Zi+B/VeGU5Xwo6KIbwpTgKc0d4urD/BtkK50IC9785y68/AA=="
+		crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 	<!--웹폰트-->
-	<link
-      rel="stylesheet"
-      as="style"
-      crossorigin
-      href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css"
-    />
+	<link rel="stylesheet" as="style" crossorigin
+		href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" />
 	<link rel="stylesheet" href="css/common.css">
 	<link rel="stylesheet" href="css/home.css">
 	<link rel="stylesheet" href="css/btn.css">
 	<link rel="stylesheet" href="css/other.css">
 </head>
+
 <body>
 	<header>
 		<a href="index.html" id="toindex">
@@ -41,8 +41,9 @@
 				<video id="video" width="720" height="560" class="video" autoplay muted></video>
 			</div>
 			<div class="heatmap-container" id="heatmapContainer" style="display: flex; padding-left: 0px;">
-				<div class="text-container" style="flex: 1; height: 100%; padding: 20px; box-sizing: border-box; overflow-y: auto;">
-<pre style="flex: 1;
+				<div class="text-container"
+					style="flex: 2.5; height: 100%; padding: 20px; box-sizing: border-box; overflow-y: auto;">
+					<pre style="flex: 1;
 padding: 20px;
 box-sizing: border-box;
 overflow-y: auto;
@@ -59,16 +60,16 @@ color: #444444;">이처럼띄어쓰기가없는문장은자세
 동적으로해석한다.참고로리처드도
 킨스는신을까대기좋아한다.</pre>
 				</div>
-				<div class="text-container" style="flex: 1; height: 100%; padding: 20px; box-sizing: border-box; overflow-y: auto; border-left: 2px solid #cccccc;">
-<pre style="
+				<div class="text-container"
+					style="flex: 2.5; height: 100%; padding: 20px; box-sizing: border-box; overflow-y: auto; border-left: 2px solid #cccccc;">
+					<pre style="
 flex: 1;
 padding: 20px;
 box-sizing: border-box;
 overflow-y: auto;
 font-size: 16px;
 line-height: 4;
-color: #000000;"
->
+color: #000000;">
 이처럼 띄어쓰기가 없는 문장은
 자세히 살펴보면 중국어나 외국어와 다를 바가 없다.
 그리고 위에서 언급된 '아버지가 방에 들어가신다'나
@@ -78,6 +79,9 @@ color: #000000;"
 자동적으로 해석한다.
 참고로 리처드 도킨스는 신을 까대기 좋아한다.
 				</div>
+				<div class="text-container" style="flex: 1; height: 100%; padding: 20px; box-sizing: border-box; overflow-y: auto;">
+					<img src="img/ad.jpg" alt="광고 이미지" style="height: 520px; border-radius: 10px;">
+									</div>
 			</div>
 		</section>
 	</main>
