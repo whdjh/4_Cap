@@ -156,7 +156,7 @@ export default class GazEmo {
         this.emoBuffer = { expressions, timestamp }; // 감정 데이터를 emoBuffer에 저장합니다.
         this.syncData(); // 시선 데이터와 감정 데이터를 동기화합니다.
       }
-    }, 100);
+    }, 70);
   }
 
   async loadModels() {

@@ -17,6 +17,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     () => {
       gazEmo.stopGazEmo();
       heatmap.createEmotionHeatmap(gazEmo.getGazEmoData());
+      console.log(gazEmo.getGazEmoData());
     },
     { once: true }
   );

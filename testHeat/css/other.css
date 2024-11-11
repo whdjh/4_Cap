@@ -34,6 +34,7 @@ main {
 	position: relative;
 	padding: 0;	/* 히트맵 위치 */
 	margin-top: 20px;
+	min-height: 200vh;
 }
 
 .main-content {
