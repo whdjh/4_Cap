@@ -37,13 +37,6 @@ $ npm run calibration
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
 ![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)         
 
-## 화면 구성 및 실행 화면 📺
-| 메인 페이지 | 히트맵 페이지 |
-| :-------------------------------------------: | :------------: |
-| <img width="329" src="주소입력"/> | <img width="329" src="주소입력"/> |  
-| 이미지 페이지 | 텍스트 페이지 |  
-| <img width="329" src="주소입력"/> | <img width="329" src="주소입력"/> |
-
 ## 주요 기능
 - 시선에 따른 히트맵이 보이고, 각 위치에서의 감정을 트래킹 할 수 있다.
 
