@@ -12,15 +12,17 @@ main {
 	flex: 1;
 	display: flex;
 	flex-direction: column;
-	padding-top: 80px;
+	margin-top: 80px;
+	box-sizing: border-box; /* padding이 전체 크기에 포함되도록 설정 */
+	height: calc(200vh - 80px); /* 헤더 높이만큼 빼줌 */
 }
 
 .banner.heatmap-banner {
 	flex: 1;
-	height: 200vh;
-	background-color: #cfe5ff;
-	display: flex;
-	flex-direction: column;
+  height: calc(200vh - 80px); /* 헤더 높이만큼 빼줌 */
+  background-color: #cfe5ff;
+  display: flex;
+  flex-direction: column;
 }
 
 .main-content {
@@ -45,10 +47,10 @@ main {
 
 .heatmap-container {
 	position: absolute;
-	top: 0;
+	top: 80px; /* 헤더 높이만큼 top 값 설정 */
 	left: 0;
 	width: 100%;
-	height: 200vh;	/* height 건드리면 히트맵 안나옴*/
+	height: calc(200vh - 80px); /* 헤더 높이만큼 빼줌 */
 	z-index: 1;
 	overflow: auto;
 	padding-left: 160px;
