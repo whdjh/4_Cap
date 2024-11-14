@@ -1,15 +1,10 @@
 # 감정인식과 아이트래킹
-<img src="https://modooptlnews.cafe24.com/data/tmp/2303/20230302122323_otiazbkr.png" width="100" height="100"/>
+<img width="100" height="100"/>
 
 # 감정인식과 아이트래킹을 이용한 학습 보조도구
 > **한경대학교 컴퓨터공학과 소프트웨어융합 학부생**
 
 > **개발기간:2024.04 - 2024.11**
-
-## 배포 주소
-> **개발 버전** : [주소를 입력) <br>
-> **프론트 서버** : [주소를 입력)<br>
-> **백엔드 서버** : [주소를 입력)<br>
 
 ## 웹개발팀 소개
 |      이주훈       |       김호탁      |       이예은     |
@@ -21,13 +16,8 @@
 4학년 졸업작품으로 진행한 감정인식과 아이트래킹을 이용한 학습 보조도구입니다.
 
 ## 시작 가이드
-### Requirements
-For building and running the application you need:
-- [Node.js 14.19.3](https://nodejs.org/ca/blog/release/v14.19.3/)
-- [Npm 9.2.0](https://www.npmjs.com/package/npm/v/9.2.0)
-
 ### Installation
-``` bash
+``` 
 $ git clone https://github.com/Voluntain-SKKU/Voluntain-2nd.git
 $ cd 4_Cap
 ```
@@ -46,27 +36,16 @@ $ npm run calibration
 ![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
 ![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
 ![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)         
-![GoogleDirve] 
-![Slack] (https://img.shields.io/badge/slack-%23seatunnel-4f8eba?logo=slack)
-
-## 다이어그램
-<img src="주소입력" width="300" height="300"/>
-
-## 간트차트
-<img src="주소입력" width="300" height="300"/>
 
 ## 화면 구성 및 실행 화면 📺
-| 시작 페이지 | 메인 페이지 |
+| 메인 페이지 | 히트맵 페이지 |
 | :-------------------------------------------: | :------------: |
 | <img width="329" src="주소입력"/> | <img width="329" src="주소입력"/> |  
-| 실행화면1 | 실행화면2 |  
+| 이미지 페이지 | 텍스트 페이지 |  
 | <img width="329" src="주소입력"/> | <img width="329" src="주소입력"/> |
 
 ## 주요 기능
-
-### ~~
-
-### ~~~
+- 시선에 따른 히트맵이 보이고, 각 위치에서의 감정을 트래킹 할 수 있다.
 
 ## Meeting Rule
 - 회의가 끝나면 Google Drive 회의록에 올린다.
