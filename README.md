@@ -1,5 +1,5 @@
 # 감정인식과 아이트래킹
-<img width="100" height="100"/>
+<img src="/testHeat/img/logo/logo.svg" width="100" height="100"/>
 
 # 감정인식과 아이트래킹을 이용한 학습 보조도구
 > **한경대학교 컴퓨터공학과 소프트웨어융합 학부생**
